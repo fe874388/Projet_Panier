@@ -10,10 +10,6 @@ import java.beans.PropertyChangeListener;
  * and open the template in the editor.
  */
 
-/**
- *
- * @author celine
- */
 public interface VueG extends PropertyChangeListener { //extends Observer {
     @Override
     public void propertyChange(PropertyChangeEvent evt);
