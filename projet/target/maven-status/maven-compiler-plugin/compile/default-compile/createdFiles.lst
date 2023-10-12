@@ -1,0 +1,16 @@
+fr\ufrsciencestech\projet\model\Orange.class
+fr\ufrsciencestech\projet\model\PanierPleinException.class
+fr\ufrsciencestech\projet\view\VueConsole.class
+fr\ufrsciencestech\projet\view\VueGraphAWT$1.class
+fr\ufrsciencestech\projet\controler\Controleur.class
+fr\ufrsciencestech\projet\model\Panier.class
+fr\ufrsciencestech\projet\model\Ananas.class
+fr\ufrsciencestech\projet\model\Fruit.class
+fr\ufrsciencestech\projet\TestMVC.class
+fr\ufrsciencestech\projet\view\VueG.class
+fr\ufrsciencestech\projet\view\VueGraphAWT.class
+fr\ufrsciencestech\projet\model\Kiwi.class
+fr\ufrsciencestech\projet\model\Modele.class
+fr\ufrsciencestech\projet\TestUtils.class
+fr\ufrsciencestech\projet\model\PanierVideException.class
+fr\ufrsciencestech\projet\view\VueGraphSwing.class

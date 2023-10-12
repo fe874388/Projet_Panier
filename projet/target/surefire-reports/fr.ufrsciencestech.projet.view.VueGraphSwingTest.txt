@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: fr.ufrsciencestech.projet.view.VueGraphSwingTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.346 s <<< FAILURE! - in fr.ufrsciencestech.projet.view.VueGraphSwingTest
+testIncr(fr.ufrsciencestech.projet.view.VueGraphSwingTest)  Time elapsed: 0.091 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "fr.ufrsciencestech.projet.model.Panier.ajout()" because "this.p" is null
+	at fr.ufrsciencestech.projet.view.VueGraphSwingTest.testIncr(VueGraphSwingTest.java:71)
+
+testDecrOk(fr.ufrsciencestech.projet.view.VueGraphSwingTest)  Time elapsed: 0.105 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "fr.ufrsciencestech.projet.model.Panier.ajout()" because "this.p" is null
+	at fr.ufrsciencestech.projet.view.VueGraphSwingTest.testDecrOk(VueGraphSwingTest.java:90)
+
+testDecrZero(fr.ufrsciencestech.projet.view.VueGraphSwingTest)  Time elapsed: 0.106 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "fr.ufrsciencestech.projet.model.Panier.retrait()" because "this.p" is null
+	at fr.ufrsciencestech.projet.view.VueGraphSwingTest.testDecrZero(VueGraphSwingTest.java:106)
+
