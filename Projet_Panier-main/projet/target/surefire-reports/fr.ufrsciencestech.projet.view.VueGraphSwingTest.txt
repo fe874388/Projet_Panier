@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: fr.ufrsciencestech.projet.view.VueGraphSwingTest
--------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.402 s <<< FAILURE! - in fr.ufrsciencestech.projet.view.VueGraphSwingTest
-testIncr(fr.ufrsciencestech.projet.view.VueGraphSwingTest)  Time elapsed: 0.154 s  <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "fr.ufrsciencestech.projet.model.Fruit.toString()" because the return value of "java.util.ArrayList.get(int)" is null
-	at fr.ufrsciencestech.projet.view.VueGraphSwingTest.testIncr(VueGraphSwingTest.java:73)
-
