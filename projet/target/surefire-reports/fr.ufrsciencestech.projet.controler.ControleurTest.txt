@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: fr.ufrsciencestech.projet.controler.ControleurTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.642 s <<< FAILURE! - in fr.ufrsciencestech.projet.controler.ControleurTest
+testActionPerformed(fr.ufrsciencestech.projet.controler.ControleurTest)  Time elapsed: 0.076 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at fr.ufrsciencestech.projet.controler.ControleurTest.testActionPerformed(ControleurTest.java:52)
+
+testActionPerformedSet(fr.ufrsciencestech.projet.controler.ControleurTest)  Time elapsed: 0.033 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at fr.ufrsciencestech.projet.controler.ControleurTest.testActionPerformedSet(ControleurTest.java:68)
+
+testSetModele(fr.ufrsciencestech.projet.controler.ControleurTest)  Time elapsed: 0.063 s  <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at fr.ufrsciencestech.projet.controler.ControleurTest.testSetModele(ControleurTest.java:94)
+
