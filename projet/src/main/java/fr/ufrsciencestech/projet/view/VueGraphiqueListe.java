@@ -25,7 +25,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     
     private JPanel jPanel1;
     private JPanel jPanel2;
-    private JComboBox<Fruit> jComboBox;
+    private JComboBox jComboBox;
     private JTextArea jTextArea;
     private JScrollPane scrollPane;
     private JMenuBar menuBar;
@@ -41,21 +41,19 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         super("Panier Swing");
 
         FabriqueFruit fruit = new FabriqueFruit();
+        Fruit orange = fruit.creerFruit("orange",0.99,"Espagne");
         Fruit ananas = fruit.creerFruit("ananas",2.0,"USA");
         Fruit banane = fruit.creerFruit("banane",1.0,"Inde");
         Fruit cerise = fruit.creerFruit("cerise",2.2,"France");
         Fruit fraise = fruit.creerFruit("fraise",1.99,"France");
         Fruit kiwi = fruit.creerFruit("kiwi",1.5,"Chine");
-        Fruit orange = fruit.creerFruit("orange",0.99,"Espagne");
         
-        Fruit[] fruits={ananas,banane,cerise,fraise,kiwi,orange};
-        DefaultComboBoxModel<Fruit> modelCombo = new DefaultComboBoxModel<>();
-        for (Fruit fru : fruits) {
-            modelCombo.addElement(fru);
-        }
+        Fruit ma = new Jus(orange,banane);
+        Fruit[] fruits={orange,ananas,banane,cerise,fraise,kiwi,ma};
+        DefaultComboBoxModel<Fruit> modelCombo = new DefaultComboBoxModel<>(fruits);
+        
         this.jComboBox = new JComboBox<>(modelCombo);
         
-      
         // Création du menu bar
         menuBar = new JMenuBar();
         menu = new JMenu("Fruit");
@@ -84,7 +82,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         jPanel2.add(affiche);
         jPanel2.add(affiche2);
         
-        jComboBox.setSelectedIndex(0);
+        this.jComboBox.setSelectedIndex(0);
         jPanel1.add(jComboBox);
         jPanel1.add(inc);
         jPanel1.add(dec);
@@ -94,7 +92,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         
         inc.setName("Plus");
         dec.setName("Moins");
-        jComboBox.setName("ComboBox");
+        this.jComboBox.setName("ComboBox");
         affiche.setName("Affichage");
         jTextArea.setText("Liste des fruit(s) dans mon Panier :\n");
         menuItem.setName("menuItemAjoutFruit");
@@ -122,7 +120,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         
         menuItem4.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e6) {
+            public void actionPerformed(ActionEvent e) {
                 AjoutJusMacedoine AjoutJusMacedoineDialog = new AjoutJusMacedoine(VueGraphiqueListe.this);          
             }
         });
@@ -134,12 +132,8 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 }
     
     public void addControleur(Controleur c){
-        this.controleur=c;
-        getInc().setActionCommand("Plus");
         getInc().addActionListener(c);
-        getDec().setActionCommand("Moins");
         getDec().addActionListener(c);
-        getjComboBox().setActionCommand("ComboBox");
         getjComboBox().addActionListener(c);
     }
 
@@ -161,19 +155,22 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     }
 
     public void ajouterFruit(Fruit f) {
-        DefaultComboBoxModel<Fruit> modela = (DefaultComboBoxModel<Fruit>) jComboBox.getModel();
-        modela.addElement(f);    
+        DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
+        models.addElement(f);
+        repaint();
+        revalidate();
         //jComboBox.addItem(f);
     }
     
     public void supprimerFruit(Fruit elementSelectionne) {
-        DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) jComboBox.getModel();
+        DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
         models.removeElement(elementSelectionne);
         repaint();
+        revalidate();
     }
     
     public void Boycottepays(String elementSelectionne) {
-        DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) jComboBox.getModel();
+        DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
         for (int i=0; i<models.getSize(); i++){
             if(models.getElementAt(i).getOrigine().toLowerCase().equals(elementSelectionne.toLowerCase())){
                 models.removeElementAt(i);
@@ -181,16 +178,21 @@ public class VueGraphiqueListe extends JFrame implements VueG{
             }
         }
         if(models.getSize()>0)
-            jComboBox.setSelectedIndex(0);
+            getjComboBox().setSelectedIndex(0);
         repaint();
+        revalidate();
     }
-    public void ajouterJusMacedoine(Fruit jm) {
-        DefaultComboBoxModel<Fruit> modela = (DefaultComboBoxModel<Fruit>) jComboBox.getModel();
-        modela.addElement(jm);    
+    public void ajouterJusMacedoine(Fruit f) {
+        DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
+        models.addElement(f);
+        repaint();
+        revalidate();
+        //getjComboBox().setSelectedItem(jm);
         //jComboBox.addItem(f);
+        //jComboBox.setModel(mode);
     }
-    
 
+        
     public JMenuItem getjmenuItem() {
         return this.menuItem;
     }

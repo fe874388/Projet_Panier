@@ -24,20 +24,15 @@ public class Panier extends Observable{
        this.contenanceMax = contMax;
     }
 
-@Override
-public String toString() {
-    String res = "";
-    String newLine = System.getProperty("line.separator");
-    for (int i = 0; i < fruits.size(); i++) {
-        Fruit fruit = fruits.get(i);
-        if (fruit != null) {
-            res += fruit.toString() + newLine;
-        } else {
-            res += "Element null à l'indice " + i + newLine;
+    @Override
+    public String toString() { // affichage de ce qui est contenu dans le panier : liste des fruits presents
+        String res = "";
+        String newLine = System.getProperty("line.separator");
+        for (int i = 0; i < fruits.size(); i++) {
+            res += fruits.get(i).toString() + newLine;
         }
+        return res;
     }
-    return res;
-}
     
     //groupe 2
     public ArrayList<Fruit> getFruits() {  //accesseur du premier attribut

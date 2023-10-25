@@ -29,6 +29,14 @@ public class Jus implements Fruit{
         this.fruits.add(f);
     }
     
+    public Jus(Fruit f1,Fruit f2) 
+    {
+        this.fruits = new ArrayList<Fruit>();
+        this.prix = 0;
+        this.fruits.add(f1);
+        this.fruits.add(f2);
+    }
+        
     public void ajoute(Fruit f) 
     {
         this.fruits.add(f);
@@ -78,7 +86,11 @@ public class Jus implements Fruit{
 }
 
     @Override
-    public boolean equals(Object o){  //predicat pour tester si 2 Juss sont equivalentes
+    public boolean equals(Object o){  //predicat pour tester si 2 Fraises sont equivalentes
+        if(o != null && getClass() == o.getClass()){
+            Jus or = (Jus) o;
+            return (prix == or.prix && fruits.equals(or.fruits));
+        }
         return false;
     }
 

@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class AjoutJusMacedoine extends JDialog{
-    private Fruit fruit;
     private VueGraphiqueListe parent;
     private JList<Fruit> jcb;
     private JRadioButton macedoineRadioButton;
@@ -34,7 +33,14 @@ public class AjoutJusMacedoine extends JDialog{
         this.add(jp);
         
         DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) this.parent.getjComboBox().getModel();
-        this.jcb = new JList<>(model);
+        DefaultListModel<Fruit> listModel = new DefaultListModel<>();
+        
+        for (int i=0; i<model.getSize(); i++){
+            if(!(model.getElementAt(i).getClass().getSimpleName().equals("Macedoine") || model.getElementAt(i).getClass().getSimpleName().equals("Jus"))){
+                listModel.addElement(model.getElementAt(i));
+            }
+        }
+        this.jcb = new JList<>(listModel);
         jcb.setSelectedIndex(0);
         jcb.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         this.add(jcb);
@@ -50,13 +56,13 @@ public class AjoutJusMacedoine extends JDialog{
                     for (Fruit fruit : selectedFruits) {
                        ma.ajoute(fruit);
                     }
-                    parent.ajouterJusMacedoine(ma);
+                    parent.ajouterJusMacedoine((Fruit)ma);
                 }else if (jusRadioButton.isSelected()){
                     Jus jus=new Jus();
                     for (Fruit fruit : selectedFruits) {
                        jus.ajoute(fruit);
                     }
-                    parent.ajouterJusMacedoine(jus);
+                    parent.ajouterJusMacedoine((Fruit)jus);
                 }
                 dispose(); // Ferme la fenêtre de dialogue
             }
