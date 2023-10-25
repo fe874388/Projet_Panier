@@ -5,17 +5,17 @@
  */
 package fr.ufrsciencestech.projet.view;
 
+import fr.ufrsciencestech.projet.controler.Controleur;
 import fr.ufrsciencestech.projet.model.Modele;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Observable;
 import java.util.Observer;
 
-
-
-
 public class VueConsole implements PropertyChangeListener, Observer{
     private String trace;
+
+    private Modele model = new Modele();
     
     /**
      * @return the trace
@@ -36,9 +36,10 @@ public class VueConsole implements PropertyChangeListener, Observer{
         System.out.println(trace);
     }
     
-    public void update(Observable m, Object compte){   //This method is called whenever the observed object is changed
-
+    public void update(Observable m, Object compteur){   //This method is called whenever the observed object is changed
+      //  ((Modele) m).setCompteur((Integer)compteur);
     }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt){
         Modele m = (Modele) evt.getSource();
@@ -47,11 +48,9 @@ public class VueConsole implements PropertyChangeListener, Observer{
         System.out.println(trace);
         
         System.out.println("Variation of " + evt.getPropertyName());
-	System.out.println("\t(" + evt.getOldValue() + 
+	    System.out.println("\t(" + evt.getOldValue() +
 							" -> " + evt.getNewValue() + ")");
-	System.out.println("Property in object " + evt.getSource());
-
+	    System.out.println("Property in object " + evt.getSource());
     }
-
 
 }

@@ -1,6 +1,8 @@
 package fr.ufrsciencestech.projet.view;
 
 import fr.ufrsciencestech.projet.controler.Controleur;
+import fr.ufrsciencestech.projet.model.Modele;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Observable;

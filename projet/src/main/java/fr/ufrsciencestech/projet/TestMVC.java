@@ -48,7 +48,7 @@ public class TestMVC {
         this.controleur = controleur;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws PanierPleinException {
         //TestMVC test = new TestMVC();    //sans utiliser SpringIoC
 
         //La meme chose mais avec SpringIoC :
@@ -57,15 +57,7 @@ public class TestMVC {
         test.setControleur( (Controleur)context.getBean("Controleur") );  //SpringIoC
         test.setVueg( (VueG)context.getBean("Vue") );   //SpringIoC
 
-        Modele m = new Modele();
-        test.getControleur().setModele(m);
-
-        // test.getControleur().setCurrentFruit(new FabriqueFruit());
-
-        m.addObserver(test.getVueg());
+        test.getControleur().setModele((Modele)context.getBean("Modele"));
         test.getVueg().addControleur(test.getControleur());
-
-        VueConsole vuec = new VueConsole();
-        m.addObserver(vuec);
     }
 }

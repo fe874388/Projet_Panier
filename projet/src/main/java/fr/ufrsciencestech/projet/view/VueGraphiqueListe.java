@@ -34,11 +34,12 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private JMenuItem menuItem2;
     private JMenuItem menuItem3;
     private JMenuItem menuItem4;
-    Fruit[] fruits;
-    
+
+    private Controleur controleur;
+
     public VueGraphiqueListe() throws PanierPleinException {
         super("Panier Swing");
-        
+
         FabriqueFruit fruit = new FabriqueFruit();
         Fruit ananas = fruit.creerFruit("ananas",2.0,"USA");
         Fruit banane = fruit.creerFruit("banane",1.0,"Inde");
@@ -86,9 +87,9 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         jComboBox.setSelectedIndex(0);
         jPanel1.add(jComboBox);
         jPanel1.add(inc);
+        jPanel1.add(dec);
         
         add(jPanel1, BorderLayout.NORTH);
-        add(dec, BorderLayout.SOUTH);
         add(jPanel2, BorderLayout.CENTER);
         
         inc.setName("Plus");
@@ -137,43 +138,47 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         getInc().addActionListener(c);
         getDec().setActionCommand("Moins");
         getDec().addActionListener(c);
+        getDec().setActionCommand("Affichage");
+        getDec().addActionListener(c);
         getjComboBox().setActionCommand("ComboBox");
         getjComboBox().addActionListener(c);
     }
 
+
     @Override
     public void update(Observable m, Object compteur) {
-        // Vérifie si l'objet observé est du bon type (ici, Model)
-        if(m instanceof Modele) {
-            Modele model = (Modele) m;
-            // Vérifie si le compteur est du bon type (ici, Integer)
-            if(compteur instanceof Integer) {
-                int newCounterValue = (Integer) compteur;
-                model.setCompteur(newCounterValue);
-                // Par exemple, si tu as un composant texte nommé getAffiche() dans ta vue :
-              //  getAffiche().setText(Integer.toString(newCounterValue));
+            if (m instanceof Modele) {
+                Modele modele = (Modele) m;
+
+                // Met à jour l'affichage du compteur
+                affiche.setText(String.valueOf(modele.getCompteur()).toString());
+
+                // Met à jour la liste des fruits dans le panier
+                jTextArea.setText("Liste des fruit(s) dans mon Panier :\n");
+                for (Fruit fruit : modele.getPanier().getFruits()) {
+                    jTextArea.append(fruit.toString() + "\n");
+                }
             }
-        }
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt){
-        System.out.println("propertyChange method called!");  // Ajoutez cette ligne
-        Modele m = (Modele) evt.getSource();
-        if ("compteur".equals(evt.getPropertyName())) {
-            getAffiche().setText(((Integer)m.getCompteur()).toString());
-            jTextArea.setText(m.getPanier().toString());
-        }else if ("ajoutfruit".equals(evt.getPropertyName())) {
-            // Incrémentez le compteur ici
-            int newCounterValue = m.getCompteur() + 1;
-            m.setCompteur(newCounterValue);
-        }else if ("retraitfruit".equals(evt.getPropertyName())) {
-            // Décrémentez le compteur ici
-            int newCounterValue = m.getCompteur() - 1;
-            m.setCompteur(newCounterValue);
+    public void propertyChange(PropertyChangeEvent evt) {
+        System.out.println("propertyChange method called!");
+        if("value".equals(evt.getPropertyName())) {
+            if (evt.getSource() instanceof Modele) {
+                Modele m = (Modele) evt.getSource();
+                m.setCompteur((Integer) evt.getNewValue());
+                getAffiche().setText(String.valueOf(m.getCompteur()));
+            }
+        /*
+            jTextArea.setText("Liste des fruit(s) dans mon Panier :\n");
+            for (Fruit fruit : controleur.getPanier().getFruits()) {
+                jTextArea.append(fruit.toString() + "\n");
+            }
+        */
         }
     }
-         
+
     public void ajouterFruit(Fruit f) {
         DefaultComboBoxModel<Fruit> modela = (DefaultComboBoxModel<Fruit>) jComboBox.getModel();
         modela.addElement(f);    
