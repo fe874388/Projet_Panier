@@ -67,6 +67,7 @@ public class Panier extends Observable{
 
     //groupe 4
 
+    /*
     public void ajout() throws PanierPleinException {
         if (fruits.size() < contenanceMax) {
             // Ajouter un fruit fictif (vous pourriez ajouter un fruit spécifique ici)
@@ -78,11 +79,11 @@ public class Panier extends Observable{
             throw new PanierPleinException();
         }
 }
+*/
 
     public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
         if (fruits.size() < contenanceMax) {
         fruits.add(o);
-        pcs.fireIndexedPropertyChange("ajoutfruit", fruits.size(), null, o);
         }
        else {
             throw new PanierPleinException();
@@ -94,7 +95,6 @@ public class Panier extends Observable{
         if(!fruits.isEmpty()){
             int removedIndex = fruits.size() - 1;
             fruits.remove(removedIndex);
-            pcs.fireIndexedPropertyChange("retraitfruit", removedIndex, this.getFruit(removedIndex), null);
         } else{
             System.out.println("le panier est vide");
         } 

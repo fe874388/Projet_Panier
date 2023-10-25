@@ -12,6 +12,8 @@ and open the template in the editor.
         <!-- ===== Déclaration des Managers ===== -->
     <bean id="Vue" class="fr.ufrsciencestech.projet.view.VueGraphiqueListe"/>
     <bean id="Modele" class="fr.ufrsciencestech.projet.model.Modele"/>
+    <bean id="Console" class="fr.ufrsciencestech.projet.view.VueConsole"/>
+
 
     <bean id="Controleur" class="fr.ufrsciencestech.projet.controler.Controleur">
         <constructor-arg index="0" ref="Modele"/>

@@ -16,45 +16,53 @@ import java.util.logging.Logger;
 public class Controleur implements ActionListener {
     private Modele model;
     private VueGraphiqueListe vue;
-    private Fruit CurrentFruit;
-    private Panier p= new Panier(20);
-
-
+    private Fruit currentFruit;
+    private Panier p = new Panier(20);
 
     public Controleur(Modele model, VueGraphiqueListe vue) {
         this.model = model;
         this.vue = vue;
-        this.model.addPropertyChangeListener(vue);
+        model.addPropertyChangeListener(vue);
     }
 
     @Override
     public void actionPerformed(ActionEvent e){   //Invoked when an action occurs
-        if (((Component) e.getSource()).getName().equals("ComboBox")){
-            CurrentFruit = (Fruit) vue.getjComboBox().getSelectedItem();
-            System.out.println("**- CHANGEMENT DANS LA COMBOBOX Fruit Courant : " + CurrentFruit + " -**");
+        if ("ComboBox".equals(((Component) e.getSource()).getName())){
+            currentFruit = (Fruit) vue.getjComboBox().getSelectedItem();
+            System.out.println("**--- Changement dans la  ComboBox Fruit Courant : " + currentFruit + " ---**");
         }
-        if(((Component)e.getSource()).getName().equals("Plus")) {
-            vue.getjComboBox().addItem(CurrentFruit);
-            vue.update(model,model.getCompteur());
-    }
-        if(((Component)e.getSource()).getName().equals("Moins"))
+        if("Plus".equals(((Component)e.getSource()).getName())) {
+            try {
+                p.ajout(currentFruit);
+                model.update(1);
+               // vue.ajouterFruit(currentFruit);
+            } catch (PanierPleinException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        if("Moins".equals(((Component)e.getSource()).getName())) {
             try {
                 p.retrait();
-                vue.update(model,model.getCompteur());
-        } catch (PanierVideException ex) {
-            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+                model.update(-1);
+            } catch (PanierVideException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
-    
+
     public void setPanier(Panier pa){
         this.p = pa;
     }
+
+    public Panier getPanier(){
+        return this.p;
+    }
     
     public void setCurrentFruit(Fruit c){
-        this.CurrentFruit = c;
+        this.currentFruit = c;
     }
     public Fruit getCurrentFruit(){
-        return CurrentFruit;
+        return currentFruit;
     }
     public void setModele(Modele m)
     {

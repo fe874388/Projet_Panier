@@ -5,21 +5,38 @@
  */
 package fr.ufrsciencestech.projet.model;
 
+import fr.ufrsciencestech.projet.view.VueConsole;
+import fr.ufrsciencestech.projet.view.VueG;
+import fr.ufrsciencestech.projet.view.VueGraphiqueListe;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Observer;
 
 public class Modele extends Observable{
     private int compteur;   //compteur toujours positif
     private Panier panier=new Panier(20);
-    private Fruit o;
-    
-    PropertyChangeSupport pcs = new  PropertyChangeSupport(this);
+    PropertyChangeSupport support;
 
     public Modele(){
+        support = new  PropertyChangeSupport(this);
         compteur = 0;
     }
 
+    public void update(int incr) {
+        int old = this.compteur;
+        compteur += incr;
+        if(compteur<0){
+            compteur=0;
+        }
+        System.out.println("compteur = "+compteur);
+        support.firePropertyChange("value",old,this.compteur);
+        setChanged();
+        notifyObservers(getCompteur());
+    }
     /**
      * @return the compteur
      */
@@ -31,21 +48,22 @@ public class Modele extends Observable{
         return panier;
     }
 
-
-    public void setCompteur(int newCounter) {
-            int oldCounter = this.compteur;
-            this.compteur = newCounter;
-            pcs.firePropertyChange("compteur", oldCounter, newCounter);
-            setChanged();
-            notifyObservers(getCompteur());
-    }
-
     public void addPropertyChangeListener(PropertyChangeListener listener) {
-        pcs.addPropertyChangeListener(listener);
+        support.addPropertyChangeListener(listener);
     }
     public void removePropertyChangeListener(PropertyChangeListener listener) {
-        pcs.removePropertyChangeListener(listener);
+        support.removePropertyChangeListener(listener);
     }
-    
+
+    public void setCompteur(int newCounter) {
+        int old = this.compteur;
+        this.compteur = newCounter;
+        if(this.compteur<0){
+            this.compteur=0;
+        }
+        support.firePropertyChange("value", old, newCounter);
+        setChanged();
+        notifyObservers(getCompteur());
+    }
 }
 
