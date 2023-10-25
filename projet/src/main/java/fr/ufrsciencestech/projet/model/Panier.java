@@ -14,20 +14,30 @@ public class Panier extends Observable{
     private Modele modele;
     
     //groupe 1
-    public Panier(int contenanceMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
+     public Panier(){  //initialise un panier vide ayant une contenance maximale de 20 
        this.fruits = new ArrayList<Fruit>();
        this.contenanceMax = contenanceMax;
     }
-
-    @Override
-    public String toString() { // affichage de ce qui est contenu dans le panier : liste des fruits presents
-        String res = "";
-        String newLine = System.getProperty("line.separator");
-        for (int i = 0; i < fruits.size(); i++) {
-            res += fruits.get(i).toString() + newLine;
-        }
-        return res;
+        
+    public Panier(int contMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
+       this.fruits = new ArrayList<Fruit>();
+       this.contenanceMax = contMax;
     }
+
+@Override
+public String toString() {
+    String res = "";
+    String newLine = System.getProperty("line.separator");
+    for (int i = 0; i < fruits.size(); i++) {
+        Fruit fruit = fruits.get(i);
+        if (fruit != null) {
+            res += fruit.toString() + newLine;
+        } else {
+            res += "Element null à l'indice " + i + newLine;
+        }
+    }
+    return res;
+}
     
     //groupe 2
     public ArrayList<Fruit> getFruits() {  //accesseur du premier attribut

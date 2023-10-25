@@ -18,7 +18,6 @@ import java.util.Observer;
 
 public class Modele extends Observable{
     private int compteur;   //compteur toujours positif
-    private Panier panier=new Panier(20);
     PropertyChangeSupport support;
 
     public Modele(){
@@ -42,10 +41,6 @@ public class Modele extends Observable{
      */
     public int getCompteur() {
         return compteur;
-    }
-
-    public Panier getPanier() {
-        return panier;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

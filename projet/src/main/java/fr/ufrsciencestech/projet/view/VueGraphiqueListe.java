@@ -134,11 +134,10 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 }
     
     public void addControleur(Controleur c){
+        this.controleur=c;
         getInc().setActionCommand("Plus");
         getInc().addActionListener(c);
         getDec().setActionCommand("Moins");
-        getDec().addActionListener(c);
-        getDec().setActionCommand("Affichage");
         getDec().addActionListener(c);
         getjComboBox().setActionCommand("ComboBox");
         getjComboBox().addActionListener(c);
@@ -147,18 +146,6 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 
     @Override
     public void update(Observable m, Object compteur) {
-            if (m instanceof Modele) {
-                Modele modele = (Modele) m;
-
-                // Met à jour l'affichage du compteur
-                affiche.setText(String.valueOf(modele.getCompteur()).toString());
-
-                // Met à jour la liste des fruits dans le panier
-                jTextArea.setText("Liste des fruit(s) dans mon Panier :\n");
-                for (Fruit fruit : modele.getPanier().getFruits()) {
-                    jTextArea.append(fruit.toString() + "\n");
-                }
-            }
     }
 
     @Override
@@ -170,12 +157,6 @@ public class VueGraphiqueListe extends JFrame implements VueG{
                 m.setCompteur((Integer) evt.getNewValue());
                 getAffiche().setText(String.valueOf(m.getCompteur()));
             }
-        /*
-            jTextArea.setText("Liste des fruit(s) dans mon Panier :\n");
-            for (Fruit fruit : controleur.getPanier().getFruits()) {
-                jTextArea.append(fruit.toString() + "\n");
-            }
-        */
         }
     }
 
@@ -215,6 +196,9 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     }
     public JComboBox getjComboBox() {
         return this.jComboBox;
+    }
+    public JTextArea getjTextArea() {
+        return this.jTextArea;
     }
      
     /**
