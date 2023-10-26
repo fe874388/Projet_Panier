@@ -77,7 +77,7 @@ public class Macedoine implements Fruit{
         }
         Noms+=fruits.get(i).getClass().getSimpleName();
     }
-    return "Macedoine de (" + Noms + ") a " + getPrix() + " euros";
+    return "Macedoine de (" + Noms + ") a " + getPrix() + " €";
 }
 
     @Override

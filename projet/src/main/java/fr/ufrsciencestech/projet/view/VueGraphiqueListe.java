@@ -12,6 +12,7 @@ import fr.ufrsciencestech.projet.model.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentListener;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -20,12 +21,12 @@ import javax.swing.*;
 
 
 public class VueGraphiqueListe extends JFrame implements VueG{
-
     private JButton inc,dec;
-    private JLabel affiche,affiche2;
-    private JPanel jPanel1,jPanel2;
+    private JLabel affiche,affiche2; //affiche3 pour le prix Total !!
+    private static JPanel jPanel1,jPanel2;
     private JComboBox jComboBox;
-    private JTextArea jTextArea;
+    private static JTextArea jTextArea;
+    private static JScrollPane scrollPane;
     private JMenuBar menuBar;
     private JMenu menuFruit,menuPanier,menuItemType,menuJusMac,menuOrigine;
     private JMenuItem menuItem,menuItem2,menuItem3,menuItem4,menuItem5;
@@ -110,26 +111,31 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         jPanel1 = new JPanel();
         jPanel2 = new JPanel();
 
+        createAndShowGUI();
+
         // Ajoutez des marges autour des panneaux
         jPanel1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         jPanel2.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        jTextArea = new JTextArea(18,30);
-        JScrollPane scrollPane= new JScrollPane(jTextArea);
+        jTextArea = new JTextArea(18,25);
+        scrollPane= new JScrollPane(jTextArea);
 
         affiche = new JLabel("0", JLabel.CENTER);
         affiche2 = new JLabel("Fruit(s) total dans le panier", JLabel.CENTER);
+      //  affiche3 = new JLabel("Total  : ",JLabel.RIGHT); à compléter !!!
 
         // Utilisez un layout plus flexible pour jPanel2
         jPanel2.setLayout(new BorderLayout());
-        JPanel labelsPanel = new JPanel(new GridLayout(2, 1, 0, 5));
+        JPanel labelsPanel = new JPanel(new GridLayout(3, 1, 0, 5));
         labelsPanel.add(affiche);
         labelsPanel.add(affiche2);
+      //  labelsPanel.add(affiche3);
+
         jPanel2.add(labelsPanel, BorderLayout.SOUTH);
         jPanel2.add(scrollPane);
 
         // Utilisez un layout pour jPanel1 avec un espacement entre les composants
-        jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
+        jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 0));
 
         // Personnalisez les couleurs si nécessaire
         jPanel1.setBackground(Color.LIGHT_GRAY);
@@ -318,9 +324,6 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         models.addElement(f);
         repaint();
         revalidate();
-        //getjComboBox().setSelectedItem(jm);
-        //jComboBox.addItem(f);
-        //jComboBox.setModel(mode);
     }
 
     public JMenuItem getjmenuItem() {
@@ -458,16 +461,54 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 
     private void styliserMenu(JMenu menu) {
         // Ajoutez des styles au besoin
-        menu.setForeground(Color.WHITE);
+     //   menu.setForeground(Color.WHITE);
         menu.setBorderPainted(false);
     }
 
     private void styliserMenuItem(JMenuItem item) {
         // Ajoutez des styles au besoin
-        item.setForeground(Color.WHITE);
+     //   item.setForeground(Color.WHITE);
         item.setBackground(new Color(0xFF9B9D9B, true));
         item.setBorderPainted(false);
     }
 
+    private void createAndShowGUI() {
+        jTextArea = new JTextArea();
+        jTextArea.setEditable(false);
+        jTextArea.setOpaque(false);
+        jTextArea.setFont(new Font("Arial", Font.PLAIN, 14));
+       // jTextArea.setForeground(Color.WHITE);
+
+        // Set a more modern look for the JTextArea
+        jTextArea.setBackground(new Color(0, 0, 0, 0)); // Transparent background
+        jTextArea.setBorder(BorderFactory.createEmptyBorder());
+
+        // Create a JScrollPane and customize it
+        scrollPane = new JScrollPane(jTextArea);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        scrollPane.setViewportBorder(BorderFactory.createEmptyBorder());
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setOpaque(false);
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0)); // Hide vertical scrollbar
+
+        // Add the JScrollPane to the existing JPanel
+        jPanel2.add(scrollPane, BorderLayout.CENTER);
+
+        // Set modern and dark look and feel
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (UnsupportedLookAndFeelException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        SwingUtilities.updateComponentTreeUI(this);
+
+        this.add(jPanel2);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+
+        // Update the text dynamically
+    //    jTextArea.setText("<html><b>Liste des fruits dans mon Panier :</b><br>Fruit 1<br>Fruit 2<br></html>");
+    }
 
 }

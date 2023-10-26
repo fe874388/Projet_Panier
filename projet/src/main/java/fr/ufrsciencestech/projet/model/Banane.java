@@ -43,7 +43,7 @@ public class Banane implements Fruit {
 
     @Override
     public String toString() {
-        return "Banane de " + origine + " a " + prix + " euros";
+        return "Banane de " + origine + " a " + prix + " €";
     }
 
     @Override

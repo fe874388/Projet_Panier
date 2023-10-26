@@ -45,7 +45,7 @@ public class Orange implements Fruit{
 
     @Override
     public String toString(){
-        return "Orange de " + origine + " a " + prix + " euros";
+        return "Orange de " + origine + " a " + prix + " €";
     }
 
     @Override

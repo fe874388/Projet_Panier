@@ -48,7 +48,7 @@ public class Cerise implements Fruit{
 
     @Override
     public String toString(){
-        return "Cerise de " + origine + " a " + prix + " euros";
+        return "Cerise de " + origine + " a " + prix + " €";
     }
 
     @Override

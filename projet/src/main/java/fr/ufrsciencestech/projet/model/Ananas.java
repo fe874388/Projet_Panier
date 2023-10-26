@@ -46,7 +46,7 @@ public class Ananas implements Fruit{
 
     @Override
     public String toString(){
-        return "Ananas de " + origine + " a " + prix + " euros";
+        return "Ananas de " + origine + " a " + prix + " €";
     }
 
     @Override

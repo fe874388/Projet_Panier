@@ -47,7 +47,7 @@ public class Kiwi implements Fruit {
 
     @Override
     public String toString(){
-        return "Kiwi de " + origine + " a " + prix + " euros";
+        return "Kiwi de " + origine + " a " + prix + " €";
     }
 
     @Override

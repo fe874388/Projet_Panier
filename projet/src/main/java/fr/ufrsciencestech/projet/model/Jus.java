@@ -82,7 +82,7 @@ public class Jus implements Fruit{
         }
         Noms+=fruits.get(i).getClass().getSimpleName();
     }
-    return "Jus de (" + Noms + ") a " + getPrix() + " euros";
+    return "Jus de (" + Noms + ") a " + getPrix() + " €";
 }
 
     @Override
