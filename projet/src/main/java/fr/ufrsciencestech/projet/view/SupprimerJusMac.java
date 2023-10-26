@@ -17,8 +17,15 @@ public class SupprimerJusMac extends JDialog {
         setLayout(new BorderLayout());
 
         DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) this.parent.getjComboBox().getModel();
-
-        this.jcb = new JComboBox<>(model);
+        
+        DefaultComboBoxModel<Fruit> modeleListeJusMacedoine = new DefaultComboBoxModel<>();
+        for (int i=0; i<model.getSize(); i++){
+            if(model.getElementAt(i).getClass().getSimpleName().equals("Macedoine") || model.getElementAt(i).getClass().getSimpleName().equals("Jus")){
+                modeleListeJusMacedoine .addElement(model.getElementAt(i));
+            }
+        }
+        
+        this.jcb = new JComboBox<>(modeleListeJusMacedoine);
         add(jcb, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));

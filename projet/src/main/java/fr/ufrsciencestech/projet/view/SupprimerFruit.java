@@ -30,8 +30,15 @@ public class SupprimerFruit extends JDialog {
 
     private void initUI() {
         DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) parent.getjComboBox().getModel();
-
-        this.jcb = new JComboBox<>(model);
+        
+        DefaultComboBoxModel<Fruit> modeleListeFruit = new DefaultComboBoxModel<>();
+        for (int i=0; i<model.getSize(); i++){
+            if(!(model.getElementAt(i).getClass().getSimpleName().equals("Macedoine") || model.getElementAt(i).getClass().getSimpleName().equals("Jus"))){
+                modeleListeFruit .addElement(model.getElementAt(i));
+            }
+        }
+        
+        this.jcb = new JComboBox<>(modeleListeFruit);
     }
 
     private void initLayout() {

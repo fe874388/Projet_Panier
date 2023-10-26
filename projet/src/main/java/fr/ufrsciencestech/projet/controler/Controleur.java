@@ -35,6 +35,11 @@ public class Controleur implements ActionListener {
             remplirCylindre(vue);
             vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
             vue.getAffiche().setText("0");
+        }else if (e.getActionCommand().equals("AugmenterContenance")){
+            this.p.setContenanceMax(this.p.getContenanceMax()+10);
+            vue.getPanierProgressBar().setMaximum(this.p.getContenanceMax());
+            remplirCylindre(vue);
+            vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
         }else if (((Component) e.getSource()).getName().equals("ComboBox")){
             currentFruit = (Fruit) vue.getjComboBox().getSelectedItem();
             System.out.println("**- CHANGEMENT DANS LA COMBOBOX Fruit Courant : " + currentFruit + " -**");

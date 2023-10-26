@@ -50,7 +50,11 @@ public class Panier extends Observable{
     public int getContenanceMax(){  //accesseur du second attribut
 	return contenanceMax;
     }
-
+    
+    public void setContenanceMax(int x){  //setteur du second attribut
+        this.contenanceMax=x;
+    }
+        
     //groupe 3
     public Fruit getFruit(int i){  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
 	return fruits.get(i);

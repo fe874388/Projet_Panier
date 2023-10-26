@@ -29,7 +29,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private JMenuBar menuBar;
     private JMenu menuFruit,menuPanier,menuItemType,menuJusMac,menuOrigine;
     private JMenuItem menuItem,menuItem2,menuItem3,menuItem4,menuItem5;
-    private JMenuItem menuItemRAZp,menuItemRAZc,menuItemtype1,menuItemtype2,menuItemtype3;
+    private JMenuItem menuItemRAZp,menuItemRAZc,menuItemtype1,menuItemtype2,menuItemtype3,menuItemtype4;
     private int option=0;
     private JProgressBar panierProgressBar;
     public VueGraphiqueListe() throws PanierPleinException {
@@ -74,13 +74,15 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         menuItemtype1 = new JMenuItem("Panier à moins de 2€/fruit");
         menuItemtype2 = new JMenuItem("Fruits locaux (France)");
         menuItemtype3 = new JMenuItem("Fruit seulement");
+        menuItemtype4 = new JMenuItem("Augmenter la contenance de +10");
 
         menuPanier.add(menuItemType);
 
         menuItemType.add(menuItemtype1);
         menuItemType.add(menuItemtype2);
         menuItemType.add(menuItemtype3);
-
+        menuItemType.add(menuItemtype4);
+        
         menuPanier.add(menuItemRAZp);
         menuPanier.add(menuItemRAZc);
 
@@ -257,6 +259,8 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         getjComboBox().addActionListener(c);
         getmenuItemRAZPanier().setActionCommand("RAZP");
         getmenuItemRAZPanier().addActionListener(c);
+        getmenuItemtype4().setActionCommand("AugmenterContenance");
+        getmenuItemtype4().addActionListener(c);
     }
 
     @Override
@@ -325,6 +329,9 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 
     public JMenuItem getmenuItemRAZPanier() {
         return this.menuItemRAZp;
+    }
+    public JMenuItem getmenuItemtype4() {
+        return this.menuItemtype4;
     }
 
     public JComboBox getjComboBox() {
@@ -444,6 +451,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         styliserMenuItem(menuItemtype1);
         styliserMenuItem(menuItemtype2);
         styliserMenuItem(menuItemtype3);
+        styliserMenuItem(menuItemtype4);
         styliserMenuItem(menuItemRAZp);
         styliserMenuItem(menuItemRAZc);
     }
