@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.*;
@@ -36,10 +37,15 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private JMenuItem menuItem3;
     private JMenuItem menuItem4;
     
-    private JMenuItem menuItemType;
+    private JMenu menuItemType;
     private JMenuItem menuItemRAZp;
     private JMenuItem menuItemRAZc;
 
+    private JMenuItem menuItemtype1;
+    private JMenuItem menuItemtype2;
+    private JMenuItem menuItemtype3;
+    private int option=0;
+    
     private Controleur controleur;
 
     public VueGraphiqueListe() throws PanierPleinException {
@@ -68,11 +74,18 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         menuItem2 = new JMenuItem("Supprimer Fruit/Jus/Macedoine");
         menuItem3 = new JMenuItem("Boycotter un Pays");
         
-        menuItemType = new JMenuItem("Modifier le type du Panier");
+        menuItemType = new JMenu("Modifier le type du Panier");
         menuItemRAZp = new JMenuItem("Reinitialiser le Panier");
         menuItemRAZc = new JMenuItem("Reinitialiser le Catalogue");
         
+        menuItemtype1 = new JMenuItem("Panier à moins de 2€/fruit");
+        menuItemtype2 = new JMenuItem("Fruits locaux (France)");
+        menuItemtype3 = new JMenuItem("Fruit seulement");
+        
         menuPanier.add(menuItemType);
+        menuItemType.add(menuItemtype1);
+        menuItemType.add(menuItemtype2);
+        menuItemType.add(menuItemtype3);
         menuPanier.add(menuItemRAZp);
         menuPanier.add(menuItemRAZc);
                 
@@ -118,6 +131,10 @@ public class VueGraphiqueListe extends JFrame implements VueG{
             @Override
             public void actionPerformed(ActionEvent e) {
                 AjoutFruit ajoutFruitDialog = new AjoutFruit(VueGraphiqueListe.this);
+                
+                if(option==1){Option1();}
+                if(option==2){Option2();}
+                if(option==3){Option3();}
             }
         });
         
@@ -138,7 +155,10 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         menuItem4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AjoutJusMacedoine AjoutJusMacedoineDialog = new AjoutJusMacedoine(VueGraphiqueListe.this);          
+                AjoutJusMacedoine AjoutJusMacedoineDialog = new AjoutJusMacedoine(VueGraphiqueListe.this);  
+                if(option==1){Option1();}
+                if(option==2){Option2();}
+                if(option==3){Option3();}
             }
         });
         
@@ -150,12 +170,30 @@ public class VueGraphiqueListe extends JFrame implements VueG{
             }
         });
         
-        menuItemType.addActionListener(new ActionListener() {
+        menuItemtype1.addActionListener(new ActionListener() {                  //Panier à moins de 2€/fruit
             @Override
             public void actionPerformed(ActionEvent e) {
-                TypePanier typepanier = new TypePanier(VueGraphiqueListe.this);   
+                option=1;
+                Option1();
             }
         });
+        
+        menuItemtype2.addActionListener(new ActionListener() {                   //Fruits locaux (France)
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                option=2;
+                Option2();
+            }
+        });
+        
+        menuItemtype3.addActionListener(new ActionListener() {                      //Fruit seulement
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                option=3;
+                Option3();
+            }
+        });
+                        
                 
     
         this.pack();
@@ -244,6 +282,47 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     }
     public JTextArea getjTextArea() {
         return this.jTextArea;
+    }
+    
+    public void Option1() {
+        DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
+        DefaultComboBoxModel<Fruit> modeleListeFruit = new DefaultComboBoxModel<>();
+        
+        for (int i = 0; i < model.getSize(); i++) {
+            if(model.getElementAt(i).getPrix()<2.0){
+                modeleListeFruit.addElement(model.getElementAt(i));
+            }
+        }
+        getjComboBox().setModel(modeleListeFruit);
+        repaint();
+        revalidate();
+    }
+    
+    public void Option2() {
+        DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
+        DefaultComboBoxModel<Fruit> modeleListeFruit = new DefaultComboBoxModel<>();
+        
+        for (int i = 0; i < model.getSize(); i++) {
+            if(model.getElementAt(i).getOrigine().toLowerCase().equals("france")){
+                modeleListeFruit.addElement(model.getElementAt(i)); // Ajoutez le fruit au modèle de fruits uniques
+            }
+        }
+        getjComboBox().setModel(modeleListeFruit);
+        repaint();
+        revalidate();
+    }
+    
+    public void Option3() {
+        DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
+        DefaultComboBoxModel<Fruit> modeleListeFruit = new DefaultComboBoxModel<>();
+        for (int i=0; i<model.getSize(); i++){
+            if(!(model.getElementAt(i).getClass().getSimpleName().equals("Macedoine") || model.getElementAt(i).getClass().getSimpleName().equals("Jus"))){
+                modeleListeFruit.addElement(model.getElementAt(i));
+            }
+        }
+        getjComboBox().setModel(modeleListeFruit);
+        repaint();
+        revalidate();
     }
      
     /**
