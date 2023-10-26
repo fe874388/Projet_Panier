@@ -32,6 +32,7 @@ public class Controleur implements ActionListener {
         if (e.getActionCommand().equals("RAZP")){
             this.p=new Panier(20);
             model.update(2);
+            remplirCylindre(vue);
             vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
             vue.getAffiche().setText("0");
         }else if (((Component) e.getSource()).getName().equals("ComboBox")){
@@ -42,6 +43,7 @@ public class Controleur implements ActionListener {
             try {
                 p.ajout(currentFruit);
                 model.update(1);
+                remplirCylindre(vue);
                 vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
             } catch (PanierPleinException ex) {
                 Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,6 +53,7 @@ public class Controleur implements ActionListener {
             try {
                 p.retrait();
                 model.update(-1);
+                remplirCylindre(vue);
                 vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
         } catch (PanierVideException ex) {
             Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,6 +102,18 @@ public class Controleur implements ActionListener {
         }
         return null;
     }
-    
+
+    public void remplirCylindre(VueGraphiqueListe v) {
+        if (getPanier() != null) {
+            int pourcentageRemplissage = (int) ((double) getPanier().getTaillePanier() / vue.getPanierProgressBar().getMaximum() * 100);
+
+            vue.getPanierProgressBar().setValue(getPanier().getTaillePanier());
+            vue.getPanierProgressBar().setString(pourcentageRemplissage + "%");
+        } else {
+            vue.getPanierProgressBar().setValue(0);
+            vue.getPanierProgressBar().setString("0%");
+        }
     }
+
+}
 

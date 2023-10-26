@@ -5,7 +5,6 @@
  */
 package fr.ufrsciencestech.projet.view;
 import fr.ufrsciencestech.projet.model.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,61 +14,89 @@ public class SupprimerFruit extends JDialog {
     private Fruit fruit;
     private VueGraphiqueListe parent;
     private JComboBox<Fruit> jcb;
-    
+
     public SupprimerFruit(final VueGraphiqueListe p) {
-        super(p, "Supprimer Fruit/Jus/Macedoine", true);
+        super(p, "Supprimer un fruit", true);
         this.parent = p;
-        
-        setLayout(new GridLayout(3, 2));
-        
-        DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) this.parent.getjComboBox().getModel();
 
-        this.jcb = new JComboBox<>(model);
-        this.add(jcb);
-        this.add(new JLabel("", JLabel.CENTER));
-        this.add(new JLabel("", JLabel.CENTER));
-        this.add(new JLabel("", JLabel.CENTER));
-        
-        JButton supprimerButton = new JButton("Supprimer");
-        supprimerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e2) {
-                Fruit elementSelectionne = (Fruit) jcb.getSelectedItem();
-                //System.out.println("Fruit a supprimeé:"+elementSelectionne.toString());
-                parent.supprimerFruit(elementSelectionne);
-                dispose(); // Ferme la fenêtre de dialogue
-            }
-        });
+        initUI();
+        initLayout();
 
-        JButton annulerButton = new JButton("Annuler");
-        annulerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e1) {
-                System.out.println("Annulé:");
-                dispose(); // Ferme la fenêtre de dialogue sans créer de fruit
-            }
-        });
-
-        add(supprimerButton);
-        add(annulerButton);
-        pack();                // Redimmentionnage automatique
-        setSize(400, 400);
-        Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getWidth()/2, dim.height/2 - this.getWidth()/2);
+        pack();
+        setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }
-    
-    public Fruit getfruit() {
-        return this.fruit;
+
+    private void initUI() {
+        DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) parent.getjComboBox().getModel();
+
+        this.jcb = new JComboBox<>(model);
     }
-    
-    public void setfruit(Fruit f) {
-        this.fruit=f;
+
+    private void initLayout() {
+        setLayout(new BorderLayout());
+
+        JPanel comboBoxPanel = new JPanel();
+        comboBoxPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        comboBoxPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        comboBoxPanel.add(jcb);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        JButton supprimerButton = new JButton("Supprimer");
+        JButton annulerButton = new JButton("Annuler");
+
+        supprimerButton.setToolTipText("");
+        annulerButton.setToolTipText("");
+
+        supprimerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                supprimerFruit();
+            }
+        });
+
+        annulerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                annulerSuppression();
+            }
+        });
+
+        buttonPanel.add(supprimerButton);
+        buttonPanel.add(annulerButton);
+
+        add(comboBoxPanel, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
-    
-    public JComboBox getjComboBox() {
-        return this.jcb;
+
+    private void supprimerFruit() {
+        Fruit elementSelectionne = (Fruit) jcb.getSelectedItem();
+        if (!(elementSelectionne instanceof Macedoine || elementSelectionne instanceof Jus)) {
+            parent.supprimerFruit(elementSelectionne);
+            dispose();
+        } else {
+            // Afficher un message d'erreur ou prendre une autre action si nécessaire
+            System.out.println("L'élément sélectionné n'est pas un Fruit.");
+        }
     }
-        
+
+    private void annulerSuppression() {
+        System.out.println("Annulé:");
+        dispose();
+    }
+/*
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            new SupprimerFruit(null);
+        });
+    }
+
+ */
 }

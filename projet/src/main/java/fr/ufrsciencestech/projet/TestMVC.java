@@ -19,14 +19,13 @@ import java.util.Observable;
 public class TestMVC {
     private VueG vueg;      //pour pouvoir changer de vue si on le souhaite
     private Controleur controleur;  //pour pouvoir changer de controleur si on le souhaite
-    
+
     /**
      * @return the vueg
      */
     public VueG getVueg() {
         return vueg;
     }
-
     /**
      * @param vueg the vueg to set
      */
@@ -55,9 +54,12 @@ public class TestMVC {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
         TestMVC test = (TestMVC)context.getBean("MVC");  //SpringIoC
         test.setControleur( (Controleur)context.getBean("Controleur") );  //SpringIoC
+
+
         test.setVueg( (VueG)context.getBean("Vue") );   //SpringIoC
 
         test.getControleur().setModele((Modele)context.getBean("Modele"));
+
         test.getVueg().addControleur(test.getControleur());
     }
 }
