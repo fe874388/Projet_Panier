@@ -26,15 +26,19 @@ public class Modele extends Observable{
     }
 
     public void update(int incr) {
-        int old = this.compteur;
-        compteur += incr;
-        if(compteur<0){
-            compteur=0;
+        if(incr==2){
+            this.compteur=0;
+        }else{
+            int old = this.compteur;
+            compteur += incr;
+            if(compteur<0){
+                compteur=0;
+            }
+            System.out.println("compteur = "+compteur);
+            support.firePropertyChange("value",old,this.compteur);
+            setChanged();
+            notifyObservers(getCompteur());
         }
-        System.out.println("compteur = "+compteur);
-        support.firePropertyChange("value",old,this.compteur);
-        setChanged();
-        notifyObservers(getCompteur());
     }
     /**
      * @return the compteur

@@ -34,5 +34,6 @@ fr/ufrsciencestech/projet/model/Ananas.class
 fr/ufrsciencestech/projet/model/Cerise.class
 fr/ufrsciencestech/projet/view/AjoutJusMacedoine$1.class
 fr/ufrsciencestech/projet/view/BoycotterPays$1.class
+fr/ufrsciencestech/projet/view/VueGraphiqueListe$5.class
 fr/ufrsciencestech/projet/view/SupprimerFruit$2.class
 fr/ufrsciencestech/projet/view/AjoutFruit$1.class

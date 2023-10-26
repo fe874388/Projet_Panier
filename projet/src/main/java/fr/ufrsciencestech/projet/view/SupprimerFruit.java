@@ -17,7 +17,7 @@ public class SupprimerFruit extends JDialog {
     private JComboBox<Fruit> jcb;
     
     public SupprimerFruit(final VueGraphiqueListe p) {
-        super(p, "Ajouter un fruit", true);
+        super(p, "Supprimer Fruit/Jus/Macedoine", true);
         this.parent = p;
         
         setLayout(new GridLayout(3, 2));
@@ -54,6 +54,8 @@ public class SupprimerFruit extends JDialog {
         add(annulerButton);
         pack();                // Redimmentionnage automatique
         setSize(400, 400);
+        Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getWidth()/2, dim.height/2 - this.getWidth()/2);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }

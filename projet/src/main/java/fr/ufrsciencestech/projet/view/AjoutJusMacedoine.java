@@ -81,6 +81,8 @@ public class AjoutJusMacedoine extends JDialog{
         add(annulerButton);
         pack();                // Redimmentionnage automatique
         setSize(400, 400);
+        Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getWidth()/2, dim.height/2 - this.getWidth()/2);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }

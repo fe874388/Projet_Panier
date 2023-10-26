@@ -72,19 +72,17 @@ public class Panier extends Observable{
 
     //groupe 4
 
-    /*
+ 
     public void ajout() throws PanierPleinException {
         if (fruits.size() < contenanceMax) {
             // Ajouter un fruit fictif (vous pourriez ajouter un fruit spécifique ici)
             Fruit fruitAjoute = new Orange();  // Assurez-vous de remplacer Fruit() par le type de fruit que vous souhaitez ajouter
             fruits.add(fruitAjoute);
-
-            pcs.fireIndexedPropertyChange("fruits", fruits.size(), null, fruitAjoute);
         } else {
             throw new PanierPleinException();
         }
 }
-*/
+
 
     public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
         if (fruits.size() < contenanceMax) {

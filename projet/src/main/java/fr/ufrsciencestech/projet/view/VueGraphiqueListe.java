@@ -30,10 +30,15 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private JScrollPane scrollPane;
     private JMenuBar menuBar;
     private JMenu menu;
+    private JMenu menuPanier;
     private JMenuItem menuItem;
     private JMenuItem menuItem2;
     private JMenuItem menuItem3;
     private JMenuItem menuItem4;
+    
+    private JMenuItem menuItemType;
+    private JMenuItem menuItemRAZp;
+    private JMenuItem menuItemRAZc;
 
     private Controleur controleur;
 
@@ -56,15 +61,27 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         
         // Création du menu bar
         menuBar = new JMenuBar();
+        menuPanier = new JMenu("Panier");
         menu = new JMenu("Fruit");
         menuItem = new JMenuItem("Ajouter Fruit");
         menuItem4 = new JMenuItem("Ajouter Jus/Macedoine");
         menuItem2 = new JMenuItem("Supprimer Fruit/Jus/Macedoine");
         menuItem3 = new JMenuItem("Boycotter un Pays");
+        
+        menuItemType = new JMenuItem("Modifier le type du Panier");
+        menuItemRAZp = new JMenuItem("Reinitialiser le Panier");
+        menuItemRAZc = new JMenuItem("Reinitialiser le Catalogue");
+        
+        menuPanier.add(menuItemType);
+        menuPanier.add(menuItemRAZp);
+        menuPanier.add(menuItemRAZc);
+                
+                
         menu.add(menuItem);
         menu.add(menuItem4);
         menu.add(menuItem2);
         menu.add(menuItem3);
+        menuBar.add(menuPanier);
         menuBar.add(menu);
         setJMenuBar(menuBar);
               
@@ -124,9 +141,28 @@ public class VueGraphiqueListe extends JFrame implements VueG{
                 AjoutJusMacedoine AjoutJusMacedoineDialog = new AjoutJusMacedoine(VueGraphiqueListe.this);          
             }
         });
+        
+        menuItemRAZc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultComboBoxModel<Fruit> modelCombo = new DefaultComboBoxModel<>(fruits);
+                getjComboBox().setModel(modelCombo);
+            }
+        });
+        
+        menuItemType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TypePanier typepanier = new TypePanier(VueGraphiqueListe.this);   
+            }
+        });
+                
     
         this.pack();
-        this.setSize(600, 500);
+        this.setSize(1000, 800);
+        
+        Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getWidth()/2, dim.height/2 - this.getWidth()/2);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 }
@@ -135,6 +171,8 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         getInc().addActionListener(c);
         getDec().addActionListener(c);
         getjComboBox().addActionListener(c);
+        getmenuItemRAZPanier().setActionCommand("RAZP");
+        getmenuItemRAZPanier().addActionListener(c);
     }
 
 
@@ -196,6 +234,11 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     public JMenuItem getjmenuItem() {
         return this.menuItem;
     }
+    
+    public JMenuItem getmenuItemRAZPanier() {
+        return this.menuItemRAZp;
+    }
+        
     public JComboBox getjComboBox() {
         return this.jComboBox;
     }

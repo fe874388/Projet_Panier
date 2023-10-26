@@ -29,11 +29,16 @@ public class Controleur implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e){   //Invoked when an action occurs
-        if (((Component) e.getSource()).getName().equals("ComboBox")){
+        if (e.getActionCommand().equals("RAZP")){
+            this.p=new Panier(20);
+            model.update(2);
+            vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
+            vue.getAffiche().setText("0");
+        }else if (((Component) e.getSource()).getName().equals("ComboBox")){
             currentFruit = (Fruit) vue.getjComboBox().getSelectedItem();
             System.out.println("**- CHANGEMENT DANS LA COMBOBOX Fruit Courant : " + currentFruit + " -**");
         }
-        if(((Component)e.getSource()).getName().equals("Plus")) {
+        else if(((Component)e.getSource()).getName().equals("Plus")) {
             try {
                 p.ajout(currentFruit);
                 model.update(1);
@@ -41,15 +46,20 @@ public class Controleur implements ActionListener {
             } catch (PanierPleinException ex) {
                 Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }
-        if(((Component)e.getSource()).getName().equals("Moins"))
+        }
+        else if(((Component)e.getSource()).getName().equals("Moins"))
             try {
                 p.retrait();
                 model.update(-1);
                 vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
         } catch (PanierVideException ex) {
             Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }    	
+        
+        //System.out.println("trigger :->  "+((Component)e.getSource()));
+        //if(((Component)e.getSource()).getName()){
+        //    this.p=new Panier(20);
+        // }
     }
     
     

@@ -87,6 +87,9 @@ public class AjoutFruit extends JDialog {
         add(confirmerButton);
         add(annulerButton);
         pack();
+        setSize(400, 300);
+        Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getWidth()/2, dim.height/2 - this.getWidth()/2);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }
