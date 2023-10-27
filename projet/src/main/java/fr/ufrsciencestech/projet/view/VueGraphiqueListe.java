@@ -29,7 +29,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private JMenuBar menuBar;
     private JMenu menuFruit,menuPanier,menuItemType,menuJusMac,menuOrigine;
     private JMenuItem menuItem,menuItem2,menuItem3,menuItem4,menuItem5;
-    private JMenuItem menuItemRAZp,menuItemRAZc,menuItemtype1,menuItemtype2,menuItemtype3,menuItemtype4;
+    private JMenuItem menuItemRetirerFruit,menuItemRAZp,menuItemRAZc,menuItemtype1,menuItemtype2,menuItemtype3,menuItemtype4;
     private int option=0;
     private double prixTotal = 0.0;
     private JProgressBar panierProgressBar;
@@ -71,7 +71,8 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         menuItem5 = new JMenuItem("Boycotter un Pays");
 
         menuItemType = new JMenu("Modifier le type du Panier");
-
+        
+        menuItemRetirerFruit = new JMenuItem("Retirer un fruit du Panier");
         menuItemRAZp = new JMenuItem("Reinitialiser le Panier");
         menuItemRAZc = new JMenuItem("Reinitialiser le Catalogue");
 
@@ -87,6 +88,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         menuItemType.add(menuItemtype3);
         menuItemType.add(menuItemtype4);
         
+        menuPanier.add(menuItemRetirerFruit);
         menuPanier.add(menuItemRAZp);
         menuPanier.add(menuItemRAZc);
 
@@ -266,6 +268,8 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         getInc().addActionListener(c);
         getDec().addActionListener(c);
         getjComboBox().addActionListener(c);
+        getmenuItemRetirerFruit().setActionCommand("Retirer");
+        getmenuItemRetirerFruit().addActionListener(c);
         getmenuItemRAZPanier().setActionCommand("RAZP");
         getmenuItemRAZPanier().addActionListener(c);
         getmenuItemtype4().setActionCommand("AugmenterContenance");
@@ -332,20 +336,23 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     public JMenuItem getjmenuItem() {
         return this.menuItem;
     }
-
+    public JMenuItem getmenuItemRetirerFruit() {
+        return this.menuItemRetirerFruit;
+    }
     public JMenuItem getmenuItemRAZPanier() {
         return this.menuItemRAZp;
     }
     public JMenuItem getmenuItemtype4() {
         return this.menuItemtype4;
     }
-
     public JComboBox getjComboBox() {
         return this.jComboBox;
     }
     public JTextArea getjTextArea() {
         return this.jTextArea;
     }
+
+        
 
     public void Option1() {
         DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
@@ -531,6 +538,13 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 
     public String getProgressBarStyle() {
         return progressBarStyle;
+    }
+    
+    public void Rafraichir(Panier p) {
+        getjTextArea().repaint();
+        getjTextArea().revalidate();
+        repaint();
+        revalidate();
     }
 }
 

@@ -9,12 +9,13 @@ import fr.ufrsciencestech.projet.view.*;
 import fr.ufrsciencestech.projet.model.*;
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.*;
+import java.util.*;
+import java.util.List;
+import java.util.logging.*;
+
 
 
 public class Controleur implements ActionListener {
@@ -39,7 +40,14 @@ public class Controleur implements ActionListener {
             vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
             vue.getAffiche().setText("0");
             vue.getAffichePrix().setText("Prix Total  :  0 €");
-        }else if (e.getActionCommand().equals("AugmenterContenance")){
+        }else if (e.getActionCommand().equals("Retirer")){
+            RetirerFruit RetirerFruitDialog = new RetirerFruit(vue,this.p,model);
+            setPanier(RetirerFruitDialog.getPanier());
+            this.p=RetirerFruitDialog.getPanier();
+            remplirCylindre(vue);
+            setPrixTotal(vue);
+            vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
+        }else if(e.getActionCommand().equals("AugmenterContenance")){
             this.p.setContenanceMax(this.p.getContenanceMax()+10);
             vue.getPanierProgressBar().setMaximum(this.p.getContenanceMax());
             remplirCylindre(vue);
@@ -149,7 +157,11 @@ public void remplirCylindre(VueGraphiqueListe v) {
 
     public void setPrixTotal(VueGraphiqueListe vue){
         double prixTotal = this.getPanier().getPrix();
-        vue.getAffichePrix().setText("Prix Total : " + prixTotal + " €");
+        
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        String prixFormater = decimalFormat.format(prixTotal);
+
+        vue.getAffichePrix().setText("Prix Total : " + prixFormater + " €");
     }
 
     public void afficherErreurPanierPlein(VueGraphiqueListe vue) {

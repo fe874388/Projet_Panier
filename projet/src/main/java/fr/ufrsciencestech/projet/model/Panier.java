@@ -8,13 +8,13 @@ import java.util.Observable;
 
 public class Panier extends Observable{
     private ArrayList<Fruit> fruits  = new ArrayList<Fruit>();  //attribut pour stocker les fruits
-    private int contenanceMax=10;        //nb maximum d'oranges que peut contenir le panier
+    private int contenanceMax=10;        //nb maximum de fruits que peut contenir le panier
     private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     private Modele modele;
     
     //groupe 1
-     public Panier(){  //initialise un panier vide ayant une contenance maximale de 20 
+     public Panier(){  //initialise un panier vide ayant une contenance maximale de 10
        this.fruits = new ArrayList<Fruit>();
        this.contenanceMax = contenanceMax;
     }
@@ -79,8 +79,7 @@ public class Panier extends Observable{
  
     public void ajout() throws PanierPleinException {
         if (fruits.size() < contenanceMax) {
-            // Ajouter un fruit fictif (vous pourriez ajouter un fruit spécifique ici)
-            Fruit fruitAjoute = new Orange();  // Assurez-vous de remplacer Fruit() par le type de fruit que vous souhaitez ajouter
+            Fruit fruitAjoute = new Orange(); 
             fruits.add(fruitAjoute);
         } else {
             throw new PanierPleinException();
@@ -106,6 +105,22 @@ public class Panier extends Observable{
             System.out.println("le panier est vide");
         } 
     }
+    
+    public void retraitFruit(List<Fruit> fruitsRetirer) throws PanierVideException {
+        if (!fruits.isEmpty()){
+            for (Fruit fruit : fruitsRetirer) {
+                if (fruits.contains(fruit)) {
+                    fruits.remove(fruit);
+                    System.out.println("Le fruit " + fruit.toString() + " a été retiré du panier.");
+                } else {
+                    System.out.println("Le fruit " + fruit.toString() + " n'est pas dans le panier.");
+                }
+            }
+        }else{
+            throw new PanierVideException();
+        }
+    }
+    
 
     
     //groupe 6
