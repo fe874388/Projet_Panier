@@ -10,6 +10,9 @@ import fr.ufrsciencestech.projet.model.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,6 +42,7 @@ public class Controleur implements ActionListener {
             this.p.setContenanceMax(this.p.getContenanceMax()+10);
             vue.getPanierProgressBar().setMaximum(this.p.getContenanceMax());
             remplirCylindre(vue);
+            setPrixTotal(vue);
             vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
         }else if (((Component) e.getSource()).getName().equals("ComboBox")){
             currentFruit = (Fruit) vue.getjComboBox().getSelectedItem();
@@ -49,8 +53,10 @@ public class Controleur implements ActionListener {
                 p.ajout(currentFruit);
                 model.update(1);
                 remplirCylindre(vue);
+                setPrixTotal(vue);
                 vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
             } catch (PanierPleinException ex) {
+                afficherErreurPanierPlein(vue);
                 Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -62,14 +68,8 @@ public class Controleur implements ActionListener {
                 vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
         } catch (PanierVideException ex) {
             Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
-        }    	
-        
-        //System.out.println("trigger :->  "+((Component)e.getSource()));
-        //if(((Component)e.getSource()).getName()){
-        //    this.p=new Panier(20);
-        // }
+        }
     }
-    
     
     public void setPanier(Panier pa){
         this.p = pa;
@@ -120,5 +120,15 @@ public class Controleur implements ActionListener {
         }
     }
 
+    public void setPrixTotal(VueGraphiqueListe vue){
+        double prixTotal = this.getPanier().getPrix();
+        vue.getAffichePrix().setText("Prix Total : " + prixTotal + " €");
+    }
+
+    public void afficherErreurPanierPlein(VueGraphiqueListe vue) {
+        PanierPlein panierPleinFrame = new PanierPlein("Le panier est plein !");
+        panierPleinFrame.setVisible(true);
+    }
 }
+
 

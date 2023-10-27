@@ -22,7 +22,7 @@ import javax.swing.*;
 
 public class VueGraphiqueListe extends JFrame implements VueG{
     private JButton inc,dec;
-    private JLabel affiche,affiche2; //affiche3 pour le prix Total !!
+    private JLabel affiche,affichePrix;
     private static JPanel jPanel1,jPanel2;
     private JComboBox jComboBox;
     private static JTextArea jTextArea;
@@ -32,6 +32,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private JMenuItem menuItem,menuItem2,menuItem3,menuItem4,menuItem5;
     private JMenuItem menuItemRAZp,menuItemRAZc,menuItemtype1,menuItemtype2,menuItemtype3,menuItemtype4;
     private int option=0;
+    private double prixTotal = 0.0;
     private JProgressBar panierProgressBar;
     public VueGraphiqueListe() throws PanierPleinException {
         super("Panier Swing");
@@ -120,19 +121,23 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         jTextArea = new JTextArea(18,25);
         scrollPane= new JScrollPane(jTextArea);
 
-        affiche = new JLabel("0", JLabel.CENTER);
-        affiche2 = new JLabel("Fruit(s) total dans le panier", JLabel.CENTER);
-      //  affiche3 = new JLabel("Total  : ",JLabel.RIGHT); à compléter !!!
+
+        affiche = new JLabel("Fruit(s) total dans le panier  :  0", JLabel.CENTER);
+        affichePrix = new JLabel("Prix Total : 0 €", JLabel.CENTER);
+
 
         // Utilisez un layout plus flexible pour jPanel2
         jPanel2.setLayout(new BorderLayout());
-        JPanel labelsPanel = new JPanel(new GridLayout(3, 1, 0, 5));
+        JPanel labelsPanel = new JPanel(new GridLayout(1, 2, 0, 5));
+
         labelsPanel.add(affiche);
-        labelsPanel.add(affiche2);
-      //  labelsPanel.add(affiche3);
+        labelsPanel.add(affichePrix);
+
 
         jPanel2.add(labelsPanel, BorderLayout.SOUTH);
         jPanel2.add(scrollPane);
+
+
 
         // Utilisez un layout pour jPanel1 avec un espacement entre les composants
         jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 0));
@@ -252,7 +257,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         panierProgressBar.setValue(0);
 
 
-// Ajoutez la barre de progression à droite de la zone de texte
+        // Ajoutez la barre de progression à droite de la zone de texte
         jPanel2.add(panierProgressBar, BorderLayout.EAST);
 
         this.setVisible(true);
@@ -280,7 +285,8 @@ public class VueGraphiqueListe extends JFrame implements VueG{
             if (evt.getSource() instanceof Modele) {
                 Modele m = (Modele) evt.getSource();
                 m.setCompteur((Integer) evt.getNewValue());
-                getAffiche().setText(String.valueOf(m.getCompteur()));
+                getAffiche().setText("Fruit(s) total dans le panier  :  " + m.getCompteur());
+                getAffichePrix().setText("Prix Total  :  " + prixTotal + " €");
             }
         }
     }
@@ -291,13 +297,11 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 
 
     public void ajouterFruit(Fruit f) {
-        DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
-        models.addElement(f);
-        repaint();
-        revalidate();
-        //jComboBox.addItem(f);
+            DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
+            models.addElement(f);
+            repaint();
+            revalidate();
     }
-
 
     public void supprimerFruit(Fruit elementSelectionne) {
         DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
@@ -305,6 +309,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         repaint();
         revalidate();
     }
+
 
     public void boycotterPays(String elementSelectionne) {
         DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
@@ -420,6 +425,11 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         return affiche;
     }
 
+    public JLabel getAffichePrix() {
+        return affichePrix;
+    }
+
+
     /**
      * @param affiche the affiche to set
      */
@@ -507,8 +517,6 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        // Update the text dynamically
-    //    jTextArea.setText("<html><b>Liste des fruits dans mon Panier :</b><br>Fruit 1<br>Fruit 2<br></html>");
     }
-
 }
+
