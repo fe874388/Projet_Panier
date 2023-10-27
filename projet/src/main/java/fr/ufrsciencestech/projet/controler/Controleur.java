@@ -109,7 +109,7 @@ public class Controleur implements ActionListener {
         }
         return null;
     }
-
+/*
     public void remplirCylindre(VueGraphiqueListe v) {
         // Définition des valeurs minimale et maximale
         v.getPanierProgressBar().setMinimum(0);
@@ -125,6 +125,27 @@ public class Controleur implements ActionListener {
             vue.getPanierProgressBar().setString("0%");
         }
     }
+*/
+public void remplirCylindre(VueGraphiqueListe v) {
+    v.getPanierProgressBar().setMinimum(0);
+    v.getPanierProgressBar().setMaximum(getPanier().getContenanceMax());
+
+    if (getPanier() != null) {
+        int pourcentageRemplissage = (int) ((double) getPanier().getTaillePanier() / v.getPanierProgressBar().getMaximum() * 100);
+
+        v.getPanierProgressBar().setValue(getPanier().getTaillePanier());
+        v.getPanierProgressBar().setString(pourcentageRemplissage + "%");
+
+        // Hypothétiquement, si des méthodes pour définir la couleur et le style existent
+        v.setProgressBarColor(Color.GREEN);  // Remplacez Color.GREEN par la couleur souhaitée
+        v.setProgressBarStyle("rounded");   // Remplacez "rounded" par le style souhaité
+    } else {
+        v.getPanierProgressBar().setValue(0);
+        v.getPanierProgressBar().setString("0%");
+
+        // Vous pouvez également personnaliser la couleur et le style ici
+    }
+}
 
     public void setPrixTotal(VueGraphiqueListe vue){
         double prixTotal = this.getPanier().getPrix();

@@ -19,7 +19,6 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.*;
 
-
 public class VueGraphiqueListe extends JFrame implements VueG{
     private JButton inc,dec;
     private JLabel affiche,affichePrix;
@@ -34,6 +33,9 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private int option=0;
     private double prixTotal = 0.0;
     private JProgressBar panierProgressBar;
+    private Color progressBarColor;
+    private String progressBarStyle;
+
     public VueGraphiqueListe() throws PanierPleinException {
         super("Panier Swing");
 
@@ -138,7 +140,6 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         jPanel2.add(scrollPane);
 
 
-
         // Utilisez un layout pour jPanel1 avec un espacement entre les composants
         jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 0));
 
@@ -185,9 +186,6 @@ public class VueGraphiqueListe extends JFrame implements VueG{
             @Override
             public void actionPerformed(ActionEvent e) {
                 AjoutJusMacedoine AjoutJusMacedoineDialog = new AjoutJusMacedoine(VueGraphiqueListe.this);
-                if(option==1){Option1();}
-                if(option==2){Option2();}
-                if(option==3){Option3();}
             }
         });
 
@@ -517,6 +515,22 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
+    }
+
+    public void setProgressBarColor(Color progressBarColor) {
+        this.progressBarColor = progressBarColor;
+    }
+
+    public Color getProgressBarColor() {
+        return progressBarColor;
+    }
+
+    public void setProgressBarStyle(String progressBarStyle) {
+        this.progressBarStyle = progressBarStyle;
+    }
+
+    public String getProgressBarStyle() {
+        return progressBarStyle;
     }
 }
 
