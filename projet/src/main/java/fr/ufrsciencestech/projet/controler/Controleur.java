@@ -21,7 +21,7 @@ public class Controleur implements ActionListener {
     private Modele model;
     private VueGraphiqueListe vue;
     private Fruit currentFruit;
-    private Panier p = new Panier(20);
+    private Panier p = new Panier(10);
 
     public Controleur(Modele model, VueGraphiqueListe vue){
         this.model = model;
@@ -33,11 +33,12 @@ public class Controleur implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){   //Invoked when an action occurs
         if (e.getActionCommand().equals("RAZP")){
-            this.p=new Panier(20);
+            this.p=new Panier(getPanier().getContenanceMax());
             model.update(2);
             remplirCylindre(vue);
             vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
             vue.getAffiche().setText("0");
+            vue.getAffichePrix().setText("Prix Total  :  0 €");
         }else if (e.getActionCommand().equals("AugmenterContenance")){
             this.p.setContenanceMax(this.p.getContenanceMax()+10);
             vue.getPanierProgressBar().setMaximum(this.p.getContenanceMax());
@@ -65,6 +66,7 @@ public class Controleur implements ActionListener {
                 p.retrait();
                 model.update(-1);
                 remplirCylindre(vue);
+                setPrixTotal(vue);
                 vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
         } catch (PanierVideException ex) {
             Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
@@ -109,6 +111,10 @@ public class Controleur implements ActionListener {
     }
 
     public void remplirCylindre(VueGraphiqueListe v) {
+        // Définition des valeurs minimale et maximale
+        v.getPanierProgressBar().setMinimum(0);
+        v.getPanierProgressBar().setMaximum(getPanier().getContenanceMax()); // Utilisation de la capacité maximale du panier
+
         if (getPanier() != null) {
             int pourcentageRemplissage = (int) ((double) getPanier().getTaillePanier() / vue.getPanierProgressBar().getMaximum() * 100);
 
