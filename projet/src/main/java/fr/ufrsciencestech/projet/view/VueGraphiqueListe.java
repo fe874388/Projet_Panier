@@ -209,6 +209,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         menuItemRAZc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                option=0;
                 DefaultComboBoxModel<Fruit> modelCombo = new DefaultComboBoxModel<>(fruits);
                 getjComboBox().setModel(modelCombo);
             }
