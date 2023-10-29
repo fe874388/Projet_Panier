@@ -32,7 +32,7 @@ public class VueConsole implements PropertyChangeListener, Observer{
     }
     
     public VueConsole(){
-        trace = "Valeur initiale : " + 0;
+        trace = "Valeur initiale du panier : " + 0;
         System.out.println(trace);
     }
     

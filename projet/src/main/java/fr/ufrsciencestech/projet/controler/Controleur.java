@@ -134,26 +134,48 @@ public class Controleur implements ActionListener {
         }
     }
 */
-public void remplirCylindre(VueGraphiqueListe v) {
-    v.getPanierProgressBar().setMinimum(0);
-    v.getPanierProgressBar().setMaximum(getPanier().getContenanceMax());
 
-    if (getPanier() != null) {
-        int pourcentageRemplissage = (int) ((double) getPanier().getTaillePanier() / v.getPanierProgressBar().getMaximum() * 100);
 
-        v.getPanierProgressBar().setValue(getPanier().getTaillePanier());
-        v.getPanierProgressBar().setString(pourcentageRemplissage + "%");
+    public void remplirCylindre(VueGraphiqueListe vue) {
+        // DÃ©finition des valeurs minimale et maximale
+        vue.getPanierProgressBar().setMinimum(0);
+        vue.getPanierProgressBar().setMaximum(getPanier().getContenanceMax()); // Utilisation de la capacitÃ© maximale du panier
 
-        // Hypothétiquement, si des méthodes pour définir la couleur et le style existent
-        v.setProgressBarColor(Color.GREEN);  // Remplacez Color.GREEN par la couleur souhaitée
-        v.setProgressBarStyle("rounded");   // Remplacez "rounded" par le style souhaité
-    } else {
-        v.getPanierProgressBar().setValue(0);
-        v.getPanierProgressBar().setString("0%");
+        if (getPanier() != null) {
+            int pourcentageRemplissage = (int) ((double) getPanier().getTaillePanier() / vue.getPanierProgressBar().getMaximum() * 100);
 
-        // Vous pouvez également personnaliser la couleur et le style ici
+            vue.getPanierProgressBar().setValue(getPanier().getTaillePanier());
+            vue.getPanierProgressBar().setString(pourcentageRemplissage + "%");
+
+            // Changer la direction de remplissage du bas en haut
+            vue.getPanierProgressBar().setOrientation(JProgressBar.VERTICAL);
+
+            // Changer la couleur de la barre de progression en vert
+            vue.getPanierProgressBar().setForeground(Color.WHITE);
+
+            // DÃ©finir une largeur (Ã©paisseur) prÃ©fÃ©rÃ©e
+            int nouvelleLargeur = 150; // Vous pouvez ajuster cette valeur selon vos besoins
+            Dimension nouvelleDimension = new Dimension(nouvelleLargeur, vue.getPanierProgressBar().getPreferredSize().height);
+            vue.getPanierProgressBar().setPreferredSize(nouvelleDimension);
+        } else {
+            vue.getPanierProgressBar().setValue(0);
+            vue.getPanierProgressBar().setString("0%");
+
+            // Changer la direction de remplissage du bas en haut
+            vue.getPanierProgressBar().setOrientation(JProgressBar.VERTICAL);
+
+            // Changer la couleur de la barre de progression en vert
+            vue.getPanierProgressBar().setForeground(Color.WHITE);
+
+            // DÃ©finir une largeur (Ã©paisseur) prÃ©fÃ©rÃ©e
+            int nouvelleLargeur = 150; // Vous pouvez ajuster cette valeur selon vos besoins
+            Dimension nouvelleDimension = new Dimension(nouvelleLargeur, vue.getPanierProgressBar().getPreferredSize().height);
+            vue.getPanierProgressBar().setPreferredSize(nouvelleDimension);
+        }
     }
-}
+
+
+
 
     public void setPrixTotal(VueGraphiqueListe vue){
         double prixTotal = this.getPanier().getPrix();
