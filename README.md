@@ -8,22 +8,22 @@ Ce projet a été réalisé dans le cadre du cours de "M1 Informatique - Génie 
 Le projet inclut les fonctionnalités suivantes :
 
 - Création de différents types de fruits et leurs variations (macédoines, jus, etc.).
+- Création et gestion d'une liste de fruits (Catalogue).
 - Ajout de ces fruits dans le panier.
 - Retrait de fruits du panier.
-- Modification des fruits dans le panier.
-- Boycott de tous les fruits d'un même pays.
+- Boycotte de tous les fruits d'un même pays.
 - Création de types de paniers particuliers.
 
 ## Équipe du Projet
 
 Le projet a été réalisé par une équipe d'étudiants, et les groupes ont été formés lors du TD3. Les membres de l'équipe sont les suivants :
 
-- Faycal EL MAGHOUM
-- Idir Amzal
-- Ilyas TAHIR 
-- Ilyas RIAK
-- Khomsi El Hassouni
-- Mohamed AZDAD
+- EL MAGHOUM Fayçal
+- IDIR Amzal
+- TAHIR Ilyas 
+- RIAK Ilyas
+- KHOMSI EL HASSOUNI Majid
+- AZDAD Mohamed
 
 ## Contenu du Répertoire
 
@@ -36,7 +36,7 @@ Le projet a été réalisé par une équipe d'étudiants, et les groupes ont ét
 Pour utiliser ce projet, suivez les étapes suivantes :
 
 1. Clonez ce dépôt GitHub sur votre machine locale.
-2. Exécutez l'application Java en utilisant un environnement de développement de votre choix.
+2. Exécutez l'application Java en utilisant un environnement de développement de votre choix (Netbeans,...).
 3. Assurez-vous de disposer de toutes les dépendances nécessaires.
 4. Explorez le code source, la documentation et les maquettes d'interface utilisateur pour comprendre le fonctionnement de l'application.
 
