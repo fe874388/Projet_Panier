@@ -20,7 +20,7 @@ Le projet a été réalisé par une équipe d'étudiants, et les groupes ont ét
 
 - EL MAGHOUM Fayçal
 - IDIR Amzal
-- TAHIR Ilyes 
+- TAHIR Ilyas 
 - RIAK Ilyas
 - KHOMSI EL HASSOUNI Majid
 - AZDAD Mohamed
