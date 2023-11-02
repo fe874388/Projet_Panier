@@ -1,22 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.ufrsciencestech.projet.view;
-import fr.ufrsciencestech.projet.model.*;
 
+import fr.ufrsciencestech.projet.model.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Cette classe représente une boîte de dialogue permettant d'ajouter un fruit à la liste de fruits.
+ * @author TD2 Groupe 11
+ */
 public class AjoutFruit extends JDialog {
     private JTextField nomField, prixField, paysField;
     private JButton confirmerButton, annulerButton;
-
     private VueGraphiqueListe parent;
 
+    /**
+     * Crée une nouvelle instance de la boîte de dialogue d'ajout de fruit.
+     * @param parent La vue graphique parente à laquelle cette boîte de dialogue est attachée.
+     */
     public AjoutFruit(final VueGraphiqueListe parent) {
         super(parent, "Ajouter un fruit", true);
         this.parent = parent;
@@ -29,7 +31,10 @@ public class AjoutFruit extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }
-
+    
+    /**
+     * Initialise l'instance de la boîte de dialogue d'ajout de fruit.
+     */
     private void initUI() {
         nomField = new JTextField(10);
         prixField = new JTextField(10);
@@ -53,13 +58,18 @@ public class AjoutFruit extends JDialog {
         });
     }
 
+    /**
+     * Gere la mise en page de la boîte de dialogue en ajoutant des composants au conteneur.
+     * Cette méthode définit les dispositions des champs de texte, des étiquettes et des boutons dans la boîte de dialogue.
+     */
     private void initLayout() {
         setLayout(new BorderLayout());
-
+        // Crée un panneau pour les champs de texte
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridLayout(3, 2, 5, 5));
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        // Ajoute des étiquettes et des champs de texte pour le nom, le prix et le pays de provenance
         inputPanel.add(new JLabel("Nom du fruit:"));
         inputPanel.add(nomField);
 
@@ -68,16 +78,21 @@ public class AjoutFruit extends JDialog {
 
         inputPanel.add(new JLabel("Pays de provenance:"));
         inputPanel.add(paysField);
-
+        // Crée un panneau pour les boutons (Confirmer et Annuler)
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
         buttonPanel.add(confirmerButton);
         buttonPanel.add(annulerButton);
 
+        // Ajoute le panneau des champs de texte au centre de la boîte de dialogue
         add(inputPanel, BorderLayout.CENTER);
+        // Ajoute le panneau des boutons en bas de la boîte de dialogue
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Ajoute un fruit à la liste de fruits de la vue parente (vue principale).
+     */
     private void ajouterFruit() {
         try {
             String nom = nomField.getText();
@@ -92,6 +107,14 @@ public class AjoutFruit extends JDialog {
         }
     }
 
+    /**
+     * Crée une instance de fruit en fonction des informations saisies.
+     * @param nom  Le nom du fruit.
+     * @param prix Le prix du fruit.
+     * @param pays Le pays de provenance du fruit.
+     * @return Une instance de Fruit ou l'une de ses sous-classes.
+     * @throws IllegalArgumentException Si le nom du fruit n'est pas reconnu.
+     */
     private Fruit createFruit(String nom, double prix, String pays) {
         switch (nom.toLowerCase()) {
             case "orange":
@@ -111,6 +134,9 @@ public class AjoutFruit extends JDialog {
         }
     }
 
+    /**
+     * Annule l'ajout de fruit et ferme la boîte de dialogue.
+     */
     private void annulerAjout() {
         dispose();
     }

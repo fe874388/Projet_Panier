@@ -1,51 +1,58 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.ufrsciencestech.projet;
 
 import fr.ufrsciencestech.projet.controler.Controleur;
 import fr.ufrsciencestech.projet.view.*;
 import fr.ufrsciencestech.projet.model.*;
-
-//utilise pour springIoC :
 import javax.swing.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.Observable;
 
+/**
+ * Classe TestMVC qui nous servira de programme lanceur (main) pour ce Projet
+ * @author TD2 GROUPE 11
+ */
 public class TestMVC {
-    private VueG vueg;      //pour pouvoir changer de vue si on le souhaite
-    private Controleur controleur;  //pour pouvoir changer de controleur si on le souhaite
+    private VueG vueg; //test
+    private Controleur controleur;
 
     /**
-     * @return the vueg
+     * Sert a obtenir une vue
+     * @return VueG Soit la vue qui est en train d'être utilisé
      */
     public VueG getVueg() {
         return vueg;
     }
+    
     /**
-     * @param vueg the vueg to set
+     * Sert à definir notre vue courante en la remplacant par une autre
+     * @param vueg Soit vueg la nouvelle vue
      */
     public void setVueg(VueG vueg) {
         this.vueg = vueg;
     }
 
     /**
-     * @return the controleur
+     * Sert a obtenir un controler
+     * @return Controleur Soit le controleur qui est en train d'être utilisé
      */
     public Controleur getControleur() {
         return controleur;
     }
 
     /**
-     * @param controleur the controleur to set
+     * Sert à definir notre controleur courant en le remplacant par un autre
+     * @param controleur Soit controleur le nouveau controleur
      */
     public void setControleur(Controleur controleur) {
         this.controleur = controleur;
     }
 
+     /**
+     * Le main sert à initialiser tout les differents élements nécessaire au bon fonctionnement de notre projet et à les lancer/éxécuter
+     * @param args Par default
+     * @throws PanierPleinException Si le panier est plein
+     */
     public static void main(String[] args) throws PanierPleinException {
         //TestMVC test = new TestMVC();    //sans utiliser SpringIoC
 

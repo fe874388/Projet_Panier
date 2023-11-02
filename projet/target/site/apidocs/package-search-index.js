@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.ufrsciencestech.projet"},{"l":"fr.ufrsciencestech.projet.controler"},{"l":"fr.ufrsciencestech.projet.model"},{"l":"fr.ufrsciencestech.projet.view"}]

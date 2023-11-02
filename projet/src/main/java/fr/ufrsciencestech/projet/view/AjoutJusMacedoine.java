@@ -6,12 +6,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * Cette classe est une boîte de dialogue (interface graphique)
+ * Elle sert a créer et ajouter une macédoine ou un jus pour l'inserer au catalogue de l'IHM principale
+ * @author TD2 Groupe 11
+ */
 public class AjoutJusMacedoine extends JDialog {
     private VueGraphiqueListe parent;
     private JList<Fruit> fruitList;
     private JRadioButton macedoineRadioButton;
     private JRadioButton jusRadioButton;
-
+    
+    /**
+     * Constructeur de la boîte de dialogue d'ajout de Jus/Macédoine.
+     * @param p La vue graphique parente.
+     */
     public AjoutJusMacedoine(final VueGraphiqueListe p) {
         super(p, "Ajouter Jus/Macedoine", true);
         this.parent = p;
@@ -24,7 +33,10 @@ public class AjoutJusMacedoine extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }
-
+    
+    /**
+     * Initialisation des composants graphiques
+     */
     private void initUI() {
         macedoineRadioButton = new JRadioButton("Macédoine");
         jusRadioButton = new JRadioButton("Jus");
@@ -36,7 +48,6 @@ public class AjoutJusMacedoine extends JDialog {
 
         DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) parent.getjComboBox().getModel();
         DefaultListModel<Fruit> listModel = new DefaultListModel<>();
-
         for (int i = 0; i < model.getSize(); i++) {
             if (!(model.getElementAt(i) instanceof Macedoine) && !(model.getElementAt(i) instanceof Jus)) {
                 listModel.addElement(model.getElementAt(i));
@@ -47,7 +58,10 @@ public class AjoutJusMacedoine extends JDialog {
         fruitList.setSelectedIndex(0);
         fruitList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     }
-
+    
+    /**
+     * Mise en page des composants graphiques
+     */
     private void initLayout() {
         setLayout(new BorderLayout());
 
@@ -85,7 +99,10 @@ public class AjoutJusMacedoine extends JDialog {
         add(scrollPane, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
     }
-
+    
+    /**
+     * Fonction qui créer la Macedoine ou le Jus en fonction des éléments selectionnés par l'utilisateur sur l'IHM
+     */
     private void creerJusMacedoine() {
         List<Fruit> selectedFruits = fruitList.getSelectedValuesList();
         if (macedoineRadioButton.isSelected()) {
@@ -103,7 +120,10 @@ public class AjoutJusMacedoine extends JDialog {
         }
         dispose();
     }
-
+    
+    /**
+     * Fonction qui permet d'annuler la saisie et de fermer la fenetre de dialogue
+     */
     private void annulerAjout() {
         dispose();
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.ufrsciencestech.projet.controler;
 
 import fr.ufrsciencestech.projet.view.*;
@@ -16,14 +11,26 @@ import java.util.*;
 import java.util.List;
 import java.util.logging.*;
 
-
-
+/**
+ * Le contrôleur gère les interactions utilisateur manipuler un panier de fruits.
+ * Il sert à ajouter un fruit au panier, retirer un fruit au panier et permet également de le réinitialiser
+ * Il gère egalement la mise à jour de l'interface graphique en fonction des modifications apporté au panier.
+ * Il est l'une des représentations du Patron MVC
+ * @author TD2 Groupe 11
+ */
 public class Controleur implements ActionListener {
     private Modele model;
     private VueGraphiqueListe vue;
     private Fruit currentFruit;
     private Panier p = new Panier(10);
-
+    
+    /**
+     * Constructeur du contrôleur
+     * Initialise le modele et la vue en fonction des parametres donnés et ajoute la vue en tant que Listener du model
+     * Initialise également le fruit courant par defaut avec le fruit selectionné de la jComboBox
+     * @param model Le modèle du panier de fruits.
+     * @param vue La vue graphique associée.
+     */
     public Controleur(Modele model, VueGraphiqueListe vue){
         this.model = model;
         this.vue = vue;
@@ -31,6 +38,11 @@ public class Controleur implements ActionListener {
         currentFruit = (Fruit) vue.getjComboBox().getSelectedItem();
     }
     
+    /**
+     * Méthode invoquée lorsqu'une action se produit.
+     * C'est dans cette fonction que le compteur et le panier sont manipulé en fonction de l'interaction de l'utilisateur avec l'interface graphique
+     * @param e L'événement d'action.
+     */
     @Override
     public void actionPerformed(ActionEvent e){   //Invoked when an action occurs
         if (e.getActionCommand().equals("RAZP")){
@@ -81,28 +93,60 @@ public class Controleur implements ActionListener {
         }
     }
     
+    /**
+     * Définit le panier associé au contrôleur.
+     * @param pa Le panier à définir.
+     */
     public void setPanier(Panier pa){
         this.p = pa;
     }
-
+    
+    /**
+     * Obtient le panier associé au contrôleur.
+     * @return Le panier associé au contrôleur.
+     */
     public Panier getPanier(){
         return this.p;
     }
     
+    /**
+     * Définit le fruit courant.
+     * @param c Le fruit courant à définir.
+     */
     public void setcurrentFruit(Fruit c){
         this.currentFruit = c;
     }
-    public Fruit getcurrentFruit(){
+    
+    /**
+     * Obtient le fruit courant.
+     * @return Le fruit courant associé au contrôleur.
+     */
+    public Fruit getcurrentFruit() {
         return currentFruit;
     }
-    public void setModele(Modele m)
-    {
+
+    /**
+     * Définit le modèle associé au contrôleur.
+     * @param m Le modèle à définir.
+     */
+    public void setModele(Modele m) {
         this.model = m;
     }
-    public void setVue(VueGraphiqueListe vg)
-    {
+
+    /**
+     * Définit la vue associée au contrôleur.
+     * @param vg La vue à définir.
+     */
+    public void setVue(VueGraphiqueListe vg) {
         this.vue = vg;
     }
+
+    /**
+     * Méthode utilitaire pour trouver un composant JTextArea par son nom dans un conteneur.
+     * @param container Le conteneur à parcourir.
+     * @param name Le nom du composant à rechercher.
+     * @return Le composant JTextArea trouvé, ou null s'il n'est pas trouvé.
+     */
     public static JTextArea findJTextAreaByName(Container container, String name) {
         for (Component component : container.getComponents()) {
             if (component instanceof JTextArea && component.getName() != null &&
@@ -117,75 +161,56 @@ public class Controleur implements ActionListener {
         }
         return null;
     }
-/*
-    public void remplirCylindre(VueGraphiqueListe v) {
-        // Définition des valeurs minimale et maximale
-        v.getPanierProgressBar().setMinimum(0);
-        v.getPanierProgressBar().setMaximum(getPanier().getContenanceMax()); // Utilisation de la capacité maximale du panier
 
-        if (getPanier() != null) {
-            int pourcentageRemplissage = (int) ((double) getPanier().getTaillePanier() / vue.getPanierProgressBar().getMaximum() * 100);
-
-            vue.getPanierProgressBar().setValue(getPanier().getTaillePanier());
-            vue.getPanierProgressBar().setString(pourcentageRemplissage + "%");
-        } else {
-            vue.getPanierProgressBar().setValue(0);
-            vue.getPanierProgressBar().setString("0%");
-        }
-    }
-*/
-
-
+    /**
+     * Remplit la barre de progression du panier dans l'interface graphique.
+     * La barre de progression représente la quantité actuelle de fruits dans le panier par rapport sa capacité maximal.
+     * @param vue La vue graphique où la barre de progression est affichée.
+     */
     public void remplirCylindre(VueGraphiqueListe vue) {
-        // DÃ©finition des valeurs minimale et maximale
         vue.getPanierProgressBar().setMinimum(0);
-        vue.getPanierProgressBar().setMaximum(getPanier().getContenanceMax()); // Utilisation de la capacitÃ© maximale du panier
+        vue.getPanierProgressBar().setMaximum(getPanier().getContenanceMax());
 
         if (getPanier() != null) {
             int pourcentageRemplissage = (int) ((double) getPanier().getTaillePanier() / vue.getPanierProgressBar().getMaximum() * 100);
 
             vue.getPanierProgressBar().setValue(getPanier().getTaillePanier());
             vue.getPanierProgressBar().setString(pourcentageRemplissage + "%");
-
-            // Changer la direction de remplissage du bas en haut
             vue.getPanierProgressBar().setOrientation(JProgressBar.VERTICAL);
-
-            // Changer la couleur de la barre de progression en vert
             vue.getPanierProgressBar().setForeground(Color.WHITE);
 
-            // DÃ©finir une largeur (Ã©paisseur) prÃ©fÃ©rÃ©e
-            int nouvelleLargeur = 150; // Vous pouvez ajuster cette valeur selon vos besoins
+            int nouvelleLargeur = 150; 
             Dimension nouvelleDimension = new Dimension(nouvelleLargeur, vue.getPanierProgressBar().getPreferredSize().height);
             vue.getPanierProgressBar().setPreferredSize(nouvelleDimension);
-        } else {
+        }else{
             vue.getPanierProgressBar().setValue(0);
             vue.getPanierProgressBar().setString("0%");
-
-            // Changer la direction de remplissage du bas en haut
             vue.getPanierProgressBar().setOrientation(JProgressBar.VERTICAL);
-
-            // Changer la couleur de la barre de progression en vert
             vue.getPanierProgressBar().setForeground(Color.WHITE);
 
-            // DÃ©finir une largeur (Ã©paisseur) prÃ©fÃ©rÃ©e
-            int nouvelleLargeur = 150; // Vous pouvez ajuster cette valeur selon vos besoins
+            int nouvelleLargeur = 150;
             Dimension nouvelleDimension = new Dimension(nouvelleLargeur, vue.getPanierProgressBar().getPreferredSize().height);
             vue.getPanierProgressBar().setPreferredSize(nouvelleDimension);
         }
     }
-
-
-
-
+    
+    /**
+     * Calcule et affiche le prix total du panier dans l'interface graphique.
+     * @param vue La vue graphique où le prix total est affiché.
+     */
     public void setPrixTotal(VueGraphiqueListe vue){
         double prixTotal = this.getPanier().getPrix();
-        
+
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         String prixFormater = decimalFormat.format(prixTotal);
 
         vue.getAffichePrix().setText("Prix Total : " + prixFormater + " €");
     }
-
+    
+    /**
+     * Affiche une fenêtre d'erreur en cas de panier plein.
+     * @param vue La vue graphique où l'erreur est affichée.
+     */
     public void afficherErreurPanierPlein(VueGraphiqueListe vue) {
         PanierPlein panierPleinFrame = new PanierPlein("Le panier est plein !");
         panierPleinFrame.setVisible(true);

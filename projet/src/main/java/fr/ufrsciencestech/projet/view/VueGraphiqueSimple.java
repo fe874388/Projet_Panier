@@ -9,12 +9,18 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.*;
 
-
+/**
+ * Crée une nouvelle instance de VueGraphiqueSimple.
+ */
 public class VueGraphiqueSimple extends JFrame implements VueG{
     private JButton inc;
     private JButton dec;
     private JLabel affiche;
     
+    /**
+     * Constructeur de la classe `VueGraphiqueSimple`
+     * Initialise et crée des composants pour afficher une fenetre graphique
+     */
     public VueGraphiqueSimple(){
         super ("CompteurSwing");
         inc = new JButton("+");
@@ -31,7 +37,11 @@ public class VueGraphiqueSimple extends JFrame implements VueG{
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
+
+    /**
+     * Associe un contrôleur à cette vue en ajoutant des écouteurs aux boutons d'incrémentation et de décrémentation.
+     * @param c Le contrôleur à associer.
+     */
     public void addControleur(Controleur c){
         getInc().addActionListener(c);
         getDec().addActionListener(c);
@@ -41,6 +51,11 @@ public class VueGraphiqueSimple extends JFrame implements VueG{
     //public void update(Observable m, Object compte){     //This method is called whenever the observed object is changed
     //      getAffiche().setText(((Integer) compte).toString());
     //}
+
+    /**
+     * Met à jour l'affichage en fonction des modifications dans le modèle.
+     * @param evt L'événement de modification de propriété.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt){
         Modele m = (Modele) evt.getSource();
@@ -50,49 +65,53 @@ public class VueGraphiqueSimple extends JFrame implements VueG{
     }
 
     /**
-     * @return the inc
+     * @return Le bouton d'incrémentation.
      */
     public JButton getInc() {
         return inc;
     }
 
     /**
-     * @param inc the inc to set
+     * @param inc Le bouton d'incrémentation à définir.
      */
     public void setInc(JButton inc) {
         this.inc = inc;
     }
 
     /**
-     * @return the dec
+     * @return Le bouton de décrémentation.
      */
     public JButton getDec() {
         return dec;
     }
 
     /**
-     * @param dec the dec to set
+     * @param dec Le bouton de décrémentation à définir.
      */
     public void setDec(JButton dec) {
         this.dec = dec;
     }
 
     /**
-     * @return the affiche
+     * @return Le label d'affichage.
      */
     public JLabel getAffiche() {
         return affiche;
     }
 
     /**
-     * @param affiche the affiche to set
+     * @param affiche Le label d'affichage à définir.
      */
     public void setAffiche(JLabel affiche) {
         this.affiche = affiche;
     }
-
+    
+    /**
+     * @param o Observable 
+     * @param arg Object
+     */
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

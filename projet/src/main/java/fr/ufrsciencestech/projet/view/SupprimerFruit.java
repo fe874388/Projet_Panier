@@ -1,20 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.ufrsciencestech.projet.view;
+
 import fr.ufrsciencestech.projet.model.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Cette classe représente une boîte de dialogue permettant de supprimer un fruit de la liste des fruits.
+ * @author TD2 Groupe 11
+ */
 public class SupprimerFruit extends JDialog {
     private Fruit fruit;
     private VueGraphiqueListe parent;
     private JComboBox<Fruit> jcb;
-
+    
+    /**
+     * Constructeur de la boîte de dialogue SupprimerFruit pour supprimer un fruit.
+     * @param p La vue graphique parente.
+     */
     public SupprimerFruit(final VueGraphiqueListe p) {
         super(p, "Supprimer un fruit", true);
         this.parent = p;
@@ -27,20 +31,24 @@ public class SupprimerFruit extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }
-
+    
+    /**
+     * Initialise les composants de la boîte de dialogue.
+     */
     private void initUI() {
         DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) parent.getjComboBox().getModel();
-        
         DefaultComboBoxModel<Fruit> modeleListeFruit = new DefaultComboBoxModel<>();
         for (int i=0; i<model.getSize(); i++){
             if(!(model.getElementAt(i).getClass().getSimpleName().equals("Macedoine") || model.getElementAt(i).getClass().getSimpleName().equals("Jus"))){
                 modeleListeFruit .addElement(model.getElementAt(i));
             }
         }
-        
         this.jcb = new JComboBox<>(modeleListeFruit);
     }
 
+    /**
+     * Initialise la mise en page de la boîte de dialogue.
+     */
     private void initLayout() {
         setLayout(new BorderLayout());
 
@@ -49,35 +57,43 @@ public class SupprimerFruit extends JDialog {
         comboBoxPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         comboBoxPanel.add(jcb);
 
+        // Crée un panneau pour les boutons "Supprimer" et "Annuler"
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+
+        // Crée le bouton "Supprimer" et définir un conseil (tooltip)
+        // Crée le bouton "Annuler" et définir un conseil (tooltip)
         JButton supprimerButton = new JButton("Supprimer");
         JButton annulerButton = new JButton("Annuler");
 
         supprimerButton.setToolTipText("");
         annulerButton.setToolTipText("");
 
+        // Associe un gestionnaire d'événements au bouton "Supprimer"
         supprimerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 supprimerFruit();
             }
         });
-
+        // Associe un gestionnaire d'événements au bouton "Annuler"
         annulerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 annulerSuppression();
             }
         });
-
+        // Ajoute les boutons au panneau de boutons
         buttonPanel.add(supprimerButton);
         buttonPanel.add(annulerButton);
-
+        // Ajoute le panneau du sélecteur de fruit en haut et le panneau de boutons en bas
         add(comboBoxPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
     }
-
+    
+    /**
+     * Supprime le fruit sélectionné de la liste des fruits.
+     */
     private void supprimerFruit() {
         Fruit elementSelectionne = (Fruit) jcb.getSelectedItem();
         if (!(elementSelectionne instanceof Macedoine || elementSelectionne instanceof Jus)) {
@@ -89,21 +105,11 @@ public class SupprimerFruit extends JDialog {
         }
     }
 
+    /**
+     * Annule l'opération de suppression de fruit.
+     */
     private void annulerSuppression() {
         System.out.println("Annulé:");
         dispose();
     }
-/*
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            new SupprimerFruit(null);
-        });
-    }
-
- */
 }

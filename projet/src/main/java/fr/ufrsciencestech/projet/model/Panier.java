@@ -6,26 +6,40 @@ import java.util.logging.Logger;
 import java.beans.PropertyChangeSupport;
 import java.util.Observable;
 
+/**
+ * Panier est un classe qui herite de Observable qui nous sert de support principal pour ce projet.
+ * Panier est composeé d'un attribut contenanceMax, d'une ArrayList de Fruit, d'un PropertyChangeSupport et d'un modele
+ * Les attributs ArrayList de Fruit et contenanceMax nous servirons pour manipuler le panier
+ * Les attributs Modele et PropertyChangeSupport nous servirons respecter l'architecture MVC et les Design Pattern
+ * @author TD2 Groupe 11
+ */
 public class Panier extends Observable{
     private ArrayList<Fruit> fruits  = new ArrayList<Fruit>();  //attribut pour stocker les fruits
     private int contenanceMax=10;        //nb maximum de fruits que peut contenir le panier
     private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-
     private Modele modele;
     
-    //groupe 1
+    /**
+     * Constructeur de la classe Panier qui initialise le contenanceMax et l'ArrayList de Fruit
+    */
      public Panier(){  //initialise un panier vide ayant une contenance maximale de 10
        this.fruits = new ArrayList<Fruit>();
        this.contenanceMax = contenanceMax;
     }
-        
-    public Panier(int contMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
+     
+    /**
+     * Constructeur de la classe Panier avec un paramètre qui initialise une ArrayList de Fruit et la contenanceMax avec un paramètre
+    */
+    public Panier(int contMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en paramètre)
        this.fruits = new ArrayList<Fruit>();
        this.contenanceMax = contMax;
     }
-
+    
+    /**
+     * Methode toString qui affiche le contenue du panier: les noms des fruits et leur attributs (origine et prix)
+    */
     @Override
-    public String toString() { // affichage de ce qui est contenu dans le panier : liste des fruits presents
+    public String toString() {
         String res = "";
         String newLine = System.getProperty("line.separator");
         for (int i = 0; i < fruits.size(); i++) {
@@ -34,49 +48,89 @@ public class Panier extends Observable{
         return res;
     }
     
-    //groupe 2
-    public ArrayList<Fruit> getFruits() {  //accesseur du premier attribut
+    /** 
+     * Methode getFruits()
+     * @return Renvoie la liste de tout les fruits qui le compose (ArrayList)
+     */
+    public ArrayList<Fruit> getFruits() {
        return fruits;
     }
-
-    public void setFruits(ArrayList<Fruit> fruits) { //modificateur du premier attribut
+    
+    /** 
+     * Methode setFruits(ArrayList(Fruit) fruits)
+     * Remplace la liste de fruit qui compose le Panier par une autre liste en paramètre
+     * @param ArrayList(Fruit) fruits
+     */
+    public void setFruits(ArrayList<Fruit> fruits) { 
       this.fruits = fruits;
     }
-
-    public int getTaillePanier(){  //accesseur retournant la taille allouee pour l'attibut fruits
+    
+    /** 
+     * Methode getTaillePanier()
+     * Renvoie la taille de l'ArrayList de fruit contenant les fruits
+     * @return Renvoie la taille du Panier
+     */
+    public int getTaillePanier(){
         return fruits.size();
     }
     
-    public int getContenanceMax(){  //accesseur du second attribut
+    /** 
+     * Methode getTaillePanier() renvoie la contenanceMax du panier
+     * @return Renvoie la taille maximum que peut contenir le Panier
+     */
+    public int getContenanceMax(){
 	return contenanceMax;
     }
     
-    public void setContenanceMax(int x){  //setteur du second attribut
+    /** 
+     * Methode setContenanceMax(int x) permet de changer la taille maximum(contenanceMax) du panier
+     * @param x Soit la nouvelle taille du Panier 
+     */
+    public void setContenanceMax(int x){
         this.contenanceMax=x;
     }
-        
-    //groupe 3
-    public Fruit getFruit(int i){  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
+    
+    /** 
+     * Methode getFruit(int i) permet de retourner le fruit contenu dans le panier a l'emplacement n°i (ou null s'il n'y a rien a cet emplacement)
+     * @param i Soit l'indice du fruit dans le panier
+     * @return Fruit Soit le fruit d'indice i dans le panier
+     */
+    public Fruit getFruit(int i){
 	return fruits.get(i);
     }
     
-    public void setFruit(int i, Fruit f){  //modificateur du fruit contenu dans le panier a l'emplacement n°i par f (s'il y a bien deja un fruit a cet emplacement, ne rien faire sinon)
-        if(fruits.get(i) == null) {
+    /** 
+     * Methode setFruit(int i, Fruit f) permet de modifier le fruit contenu dans le panier a l'emplacement n°i par f
+     * (s'il y a deja un fruit a cet emplacement alors faire la modification, ne rien faire sinon)
+     * @param i Soit l'indice du fruit dans le panier
+     * @param f Soit le nouveau fruit remplacant l'ancien fruit
+     */
+    public void setFruit(int i, Fruit f){
+        if(fruits.get(i) != null) {
             fruits.set(i, f);
         }
     }
     
-    public boolean estVide(){  //predicat indiquant que le panier est vide
+    /** 
+     * Methode estVide() qui indique si le panier est vide ou non
+     * @return boolean True s'il est vide ou False s'il contient au moins un fruit
+     */
+    public boolean estVide(){
 	return fruits.isEmpty();
     }
     
-    public boolean estPlein(){  //predicat indiquant que le panier est plein
-	return fruits.size() == contenanceMax;
+    /** 
+     * Methode estPlein() qui indique si le panier est plein ou non
+     * @return boolean True s'il est plein ou False s'il n'est pas plein
+     */
+    public boolean estPlein(){
+	return (fruits.size() == contenanceMax);
     }
 
-    //groupe 4
-
- 
+    /** 
+     * Methode ajout() permet d'ajouter une Orange au panier
+     * @deprecated Utiliser plutot ajout(Fruit o) qui permet de choisir le fruit à ajouter en paramètre 
+     */
     public void ajout() throws PanierPleinException {
         if (fruits.size() < contenanceMax) {
             Fruit fruitAjoute = new Orange(); 
@@ -84,10 +138,13 @@ public class Panier extends Observable{
         } else {
             throw new PanierPleinException();
         }
-}
-
-
-    public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
+    }
+    
+    /** 
+     * Methode ajout(Fruit o) permet d'ajouter un fruit au panier si celui-ci n'est pas plein
+     * @param Fruit Permet d'ajouter le fruit entré en paramètre au panier 
+     */
+    public void ajout(Fruit o) throws PanierPleinException{
         if (fruits.size() < contenanceMax) {
         fruits.add(o);
         }
@@ -95,9 +152,11 @@ public class Panier extends Observable{
             throw new PanierPleinException();
         }
     }
-
-    //groupe 5
-    public void retrait() throws PanierVideException{ //retire le dernier fruit du panier si celui-ci n'est pas vide
+    
+    /** 
+     * Methode retrait() permet de retirer le dernier fruit de la liste si celui-ci n'est pas vide
+     */
+    public void retrait() throws PanierVideException{
         if(!fruits.isEmpty()){
             int removedIndex = fruits.size() - 1;
             fruits.remove(removedIndex);
@@ -106,6 +165,10 @@ public class Panier extends Observable{
         } 
     }
     
+    /** 
+     * Methode retraitFruit(List(Fruit) fruitsRetirer) permet de retirer tout les fruits de la liste en paramètre du panier
+     * S'il y a plusieurs fruits identiques alors on retirera qu'une seul itération de celui-ci
+     */
     public void retraitFruit(List<Fruit> fruitsRetirer) throws PanierVideException {
         if (!fruits.isEmpty()){
             for (Fruit fruit : fruitsRetirer) {
@@ -121,19 +184,23 @@ public class Panier extends Observable{
         }
     }
     
-
-    
-    //groupe 6
+    /** 
+     * Methode getPrix()
+     * Permet de calculer le prix total du Panier grâce à tout les fruits qui le compose (ArrayList) et de le renvoyé
+     * @return Le prix du Panier  
+     */ 
     public double getPrix() {
         double prixTotal = 0;
         for (Fruit fruit : fruits) {
-            prixTotal += fruit.getPrix(); // Assurez-vous que la classe Fruit a une méthode getPrix()
+            prixTotal += fruit.getPrix();
         }
         return prixTotal;
     }
-
     
-    //groupe 7
+    /** 
+     * Methode boycotteOrigine(String origine)
+     * Permet de retirer tout les fruits du panier dont l'origine correspond au parametre entrer par l'utilisateur
+     */ 
     public void boycotteOrigine(String origine) {
         ArrayList<Fruit> fruitsRetenus = new ArrayList<>();
         for (Fruit fruit : fruits) {
@@ -143,9 +210,14 @@ public class Panier extends Observable{
         }
         fruits = fruitsRetenus;
     }
-    //groupe 8    
+    
+    /**
+     * Methode equals qui compare le Panier courant a un autre objet
+     * Ce predicat sert à tester si deux Panier sont equivalents (s'ils contiennent exactement les memes fruits)
+     * @return boolean Retoune true si les deux Panier sont equivalentes
+     */   
     @Override
-    public boolean equals(Object o){  ///predicat pour tester si 2 paniers sont equivalents : s'ils contiennent exactement les memes fruits
+    public boolean equals(Object o){
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Panier panier = (Panier) o;

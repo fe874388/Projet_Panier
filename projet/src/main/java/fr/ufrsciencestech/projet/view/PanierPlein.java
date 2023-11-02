@@ -2,12 +2,23 @@ package fr.ufrsciencestech.projet.view;
 
 import javax.swing.*;
 
+/**
+ * Cette classe représente une fenêtre d'erreur affichée lorsque le panier est plein.
+ */
 public class PanierPlein extends JFrame {
-
+    
+    /**
+     * Constructeur de la fenêtre d'erreur pour un panier plein.
+     * @param message Le message d'erreur à afficher.
+     */
     public PanierPlein(String message) {
         initComponents(message);
     }
-
+    
+    /**
+     * Initialise les composants de la fenêtre d'erreur.
+     * @param message Le message d'erreur à afficher.
+     */
     private void initComponents(String message) {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Erreur - Panier Plein");
@@ -28,7 +39,6 @@ public class PanierPlein extends JFrame {
                 dispose(); // Ferme la fenêtre en cliquant sur le bouton "Fermer"
             }
         });
-
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                         .addComponent(errorMessageLabel)
@@ -39,7 +49,6 @@ public class PanierPlein extends JFrame {
                         .addComponent(errorMessageLabel)
                         .addComponent(closeButton)
         );
-
         GroupLayout mainLayout = new GroupLayout(getContentPane());
         getContentPane().setLayout(mainLayout);
         mainLayout.setHorizontalGroup(

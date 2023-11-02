@@ -1,15 +1,28 @@
 package fr.ufrsciencestech.projet.model;
+/**
+ * Fraise est un classe qui implement Fruit et qui nous sert d'objet afin de remplir un panier.
+ * Fraise est composeé d'un attribut Prix et d'un attribut Origine
+ * @author TD2 Groupe 11
+ */
 
 public class Fraise implements Fruit{
     private double prix;
     private String origine;
-	
+    
+    /**
+     * Constructeur de la classe Fraise qui initialise le prix à 0.5€ et l'origine à Espagne
+     */
     public Fraise() 
     {
         this.prix = 0.5;  //prix en euros
         this.origine="Espagne";
     }
     
+    /**
+     * Constructeur de la classe Fraise qui crée une fraise avec les parametres données par l'utilisateur
+     * @param prix
+     * @param origine
+     */
     public Fraise(double prix, String origine) 
     {
 	if(prix < 0)
@@ -17,49 +30,82 @@ public class Fraise implements Fruit{
 	else
 	    this.prix = prix;
 
-	if(origine.equals(""))
+	if(origine.equals("") || origine.isEmpty())
             this.origine = "Espagne";  //Espagne par défaut
 	else
             this.origine = origine;   
     }
-
+    
+    /**
+     * Methode getPrix qui retourne le prix de la fraise
+     * @return prix
+     */
     @Override
     public double getPrix(){
 	return prix;
     }
-
+    
+    /**
+     * Methode setPrix qui definie le prix de la fraise par un prix en parametre 
+     * @param prix Soit le nouveau prix de la fraise
+     */
     @Override
     public void setPrix(double prix){
-	this.prix=prix;
+    	if(prix >= 0)
+		this.prix=prix;
+	else 
+		System.out.println("Il n'est pas possible de donner un prix négatif");
     }
-
+    
+    /**
+     * Methode getOrigine qui retourne l'origine de la fraise
+     * @return origine
+     */
     @Override
     public String getOrigine(){
 	return origine;
     }
- 
+    
+    /**
+     * Methode setOrigine qui definie le pays d'origine de la fraise par un prix en parametre 
+     * @param origine Soit le nouveau pays d'origine de la fraise
+     */
     @Override
     public void setOrigine(String origine){
-	this.origine=origine;
+        this.origine=origine;
     }
-
+    
+    /**
+     * Methode toString qui affiche le fruit et ses attributs origine et prix
+     */
     @Override
     public String toString(){
         return "Fraise de " + origine + " a " + prix + " €";
     }
-
+    
+    /**
+     * Methode equals qui compare la fraise courant a un autre objet
+     * Ce predicat pour tester si deux Fraises sont equivalentes
+     * @return boolean Retoune true si les deux fruits sont equivalents
+     */
     @Override
-    public boolean equals(Object o){  //predicat pour tester si 2 Fraises sont equivalentes
+    public boolean equals(Object o){
         if(o != null && getClass() == o.getClass()){
-            Fraise or = (Fraise) o;
-            return (prix == or.prix && origine.equals(or.origine));
+            Fraise cer = (Fraise) o;
+            return (prix == cer.prix && origine.equals(cer.origine));
         }
         return false;
     }
-
+    
+    /**
+     * Methode/predicat isSeedless indiquant s'il y a des pepins
+     * @return boolean Retoune false si le fruits a des pepin
+     * @return boolean Retoune true si le fruits n'a pas de pepin
+     */
     @Override
-    public boolean isSeedless() {  //predicat indiquant qu'un fruit a des pepins
-        return false;
+    public boolean isSeedless() {
+        return true;
     }
 
 }
+

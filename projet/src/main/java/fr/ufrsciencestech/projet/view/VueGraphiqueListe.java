@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.ufrsciencestech.projet.view;
 
 import fr.ufrsciencestech.projet.controler.Controleur;
 import fr.ufrsciencestech.projet.model.Modele;
 import fr.ufrsciencestech.projet.model.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +13,10 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.*;
 
+/**
+ * La classe `VueGraphiqueListe` représente l'interface graphique de l'application Panier Swing.
+ * @author TD2 Groupe 11
+ */
 public class VueGraphiqueListe extends JFrame implements VueG{
     private JButton inc,dec;
     private JLabel affiche,affichePrix;
@@ -36,9 +34,13 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private Color progressBarColor;
     private String progressBarStyle;
 
+    /**
+     * Constructeur de la classe `VueGraphiqueListe`
+     * @throws PanierPleinException
+     */
     public VueGraphiqueListe() throws PanierPleinException {
         super("Panier Swing");
-
+        // Initialisation des éléments et des données de la vue
         FabriqueFruit fruit = new FabriqueFruit();
         Fruit orange = fruit.creerFruit("orange",0.99,"Espagne");
         Fruit ananas = fruit.creerFruit("ananas",2.0,"USA");
@@ -81,6 +83,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         menuItemtype3 = new JMenuItem("Fruit seulement");
         menuItemtype4 = new JMenuItem("Augmenter la contenance de +10");
 
+        // Configuration de l'interface utilisateur
         menuPanier.add(menuItemType);
 
         menuItemType.add(menuItemtype1);
@@ -165,7 +168,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         jTextArea.setText("Liste des fruit(s) dans mon Panier :\n");
         menuItem.setName("menuItemAjoutFruit");
 
-
+        // Gestion des actions utilisateur
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -209,7 +212,6 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         menuItemRAZc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                option=0;
                 DefaultComboBoxModel<Fruit> modelCombo = new DefaultComboBoxModel<>(fruits);
                 getjComboBox().setModel(modelCombo);
             }
@@ -260,12 +262,17 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 
         // Ajoutez la barre de progression à droite de la zone de texte
         jPanel2.add(panierProgressBar, BorderLayout.EAST);
-
+        // Affichage de la fenêtre principale
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-}
-
+    }
+    
+    /**
+     * Ajoute un ActionListener à certains composants de la Vue pour gérer les interactions utilisateur.
+     * @param c Le contrôleur qui s'occupera d'écouter les composants et de recevoir les actions utilisateur
+     */
     public void addControleur(Controleur c){
+        // Configuration des actions utilisateur et Affectation des écouteurs d'événements
         getInc().addActionListener(c);
         getDec().addActionListener(c);
         getjComboBox().addActionListener(c);
@@ -276,13 +283,24 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         getmenuItemtype4().setActionCommand("AugmenterContenance");
         getmenuItemtype4().addActionListener(c);
     }
-
+    
+     /**
+     * Fonction update initialement utiliser pour gerer le MVC sans Observable
+     * @param m Modele
+     * @param compteur Compteur
+     * @deprecated L'utilisation du Design Pattern Observable remplace cette fonction
+     */
     @Override
-    public void update(Observable m, Object compteur) {
+    public void update(Observable m, Object compteur) {        // Mise à jour de la vue en fonction des modifications du modèle
     }
 
+    /**
+     * Gestion des modifications de propriétés du modèle.
+     * @param evt Événement de changement de propriété.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        // Gestion des modifications de propriétés du modèle
         System.out.println("propertyChange method called!");
         if("value".equals(evt.getPropertyName())) {
             if (evt.getSource() instanceof Modele) {
@@ -293,19 +311,30 @@ public class VueGraphiqueListe extends JFrame implements VueG{
             }
         }
     }
-
+    
+    /**
+     * Récupère la barre de progression du panier.
+     * @return La barre de progression du panier.
+     */
     public JProgressBar getPanierProgressBar(){
         return this.panierProgressBar;
     }
 
-
+    /**
+     * Ajoute un fruit au JComboBox.
+     * @param f Le fruit à ajouter.
+     */
     public void ajouterFruit(Fruit f) {
             DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
             models.addElement(f);
             repaint();
             revalidate();
     }
-
+    
+    /**
+     * Supprime un fruit du JComboBox en fonction d'un fruit en paramètre.
+     * @param elementSelectionne Le fruit à supprimer.
+     */
     public void supprimerFruit(Fruit elementSelectionne) {
         DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
         models.removeElement(elementSelectionne);
@@ -313,7 +342,10 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         revalidate();
     }
 
-
+    /**
+     * Boycotte un pays en supprimant les fruits de ce pays du JComboBox.
+     * @param elementSelectionne Le pays à boycotter.
+     */
     public void boycotterPays(String elementSelectionne) {
         DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
         for (int i=0; i<models.getSize(); i++){
@@ -327,34 +359,70 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         repaint();
         revalidate();
     }
+
+    /**
+     * Ajoute une macedoine ou un jus au JComboBox.
+     * @param f Le fruit de la macedoine ou du jus à ajouter.
+     */
     public void ajouterJusMacedoine(Fruit f) {
         DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
         models.addElement(f);
         repaint();
         revalidate();
     }
-
+    
+    /**
+     * Recupere le composant menuItem
+     * @return Un composant JMenuItem
+     */
     public JMenuItem getjmenuItem() {
         return this.menuItem;
     }
+    
+    /**
+     * Recupere le composant menuItemRetirerFruit
+     * @return Un composant JMenuItem
+     */
     public JMenuItem getmenuItemRetirerFruit() {
         return this.menuItemRetirerFruit;
     }
+    
+    /**
+     * Recupere le composant menuItemRAZPanier
+     * @return Un composant JMenuItem
+     */
     public JMenuItem getmenuItemRAZPanier() {
         return this.menuItemRAZp;
     }
+    
+    /**
+     * Recupere le composant menuItemtype4
+     * @return Un composant JMenuItem
+     */
     public JMenuItem getmenuItemtype4() {
         return this.menuItemtype4;
     }
+    
+    /**
+     * Recupere le composant jComboBox
+     * @return Un composant JComboBox
+     */
     public JComboBox getjComboBox() {
         return this.jComboBox;
     }
+    
+    /**
+     * Recupere le composant jTextArea
+     * @return Un composant JTextArea
+     */
     public JTextArea getjTextArea() {
         return this.jTextArea;
     }
 
         
-
+    /**
+     * Methode permettant de ne garder que les fruits a moins de 2€ dans le catologue
+     */
     public void Option1() {
         DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
         DefaultComboBoxModel<Fruit> modeleListeFruit = new DefaultComboBoxModel<>();
@@ -368,7 +436,10 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         repaint();
         revalidate();
     }
-
+    
+    /**
+     * Methode permettant de ne garder que les fruits locaux (France) dans le catologue
+     */
     public void Option2() {
         DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
         DefaultComboBoxModel<Fruit> modeleListeFruit = new DefaultComboBoxModel<>();
@@ -382,7 +453,10 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         repaint();
         revalidate();
     }
-
+    
+    /**
+     * Methode permettant de ne garder que les fruits dans le catologue et de supprimer les Jus et les Macedoines
+     */
     public void Option3() {
         DefaultComboBoxModel<Fruit> model = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
         DefaultComboBoxModel<Fruit> modeleListeFruit = new DefaultComboBoxModel<>();
@@ -397,40 +471,44 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     }
 
     /**
-     * @return the inc
+     * @return Le bouton d'incrémentation.
      */
     public JButton getInc() {
         return inc;
     }
 
     /**
-     * @param inc the inc to set
+     * @param inc Le bouton d'incrémentation à définir.
      */
     public void setInc(JButton inc) {
         this.inc = inc;
     }
 
     /**
-     * @return the dec
+     * @return Le bouton de décrémentation.
      */
     public JButton getDec() {
         return dec;
     }
 
     /**
-     * @param dec the dec to set
+     * @param dec Le bouton de décrémentation à définir.
      */
     public void setDec(JButton dec) {
         this.dec = dec;
     }
 
     /**
-     * @return the affiche
+     * @return Le label affichant le nombre de fruits dans le panier.
      */
     public JLabel getAffiche() {
         return affiche;
     }
 
+
+    /**
+     * @return Le label affichant le prix total des fruits dans le panier.
+     */
     public JLabel getAffichePrix() {
         return affichePrix;
     }
@@ -444,7 +522,9 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     }
 
     /********* menu bar *************/
-
+    /**
+     * Methode styliserMenuBar qui permet changer le style graphique des MenuBar
+     */
     private void styliserMenuBar() {
         // Stylisation de la barre de menus
         menuBar.setBackground(new Color(0x462665)); // Couleur de fond
@@ -474,20 +554,31 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         styliserMenuItem(menuItemRAZp);
         styliserMenuItem(menuItemRAZc);
     }
-
+    
+    /**
+     * Methode styliserMenu qui permet changer le style graphique des JMenu
+     * @param menu Le menu a stylisé
+     */
     private void styliserMenu(JMenu menu) {
         // Ajoutez des styles au besoin
      //   menu.setForeground(Color.WHITE);
         menu.setBorderPainted(false);
     }
-
+    
+    /**
+     * Methode styliserMenuItem qui permet changer le style graphique des JMenuItem
+     * @param item Le menuItem a stylisé
+     */
     private void styliserMenuItem(JMenuItem item) {
         // Ajoutez des styles au besoin
      //   item.setForeground(Color.WHITE);
         item.setBackground(new Color(0xFF9B9D9B, true));
         item.setBorderPainted(false);
     }
-
+    
+    /**
+     * Methode createAndShowGUI qui permet changer le style graphique de l'IHM afin de la rendre plus jolie
+     */
     private void createAndShowGUI() {
         jTextArea = new JTextArea();
         jTextArea.setEditable(false);
@@ -525,22 +616,40 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 
     }
 
+    /**
+     * Configure le style de la barre de progression du panier.
+     * @param progressBarColor La couleur de la barre de progression.
+     */
     public void setProgressBarColor(Color progressBarColor) {
         this.progressBarColor = progressBarColor;
     }
 
+    /**
+     * @return La couleur de la barre de progression du panier.
+     */
     public Color getProgressBarColor() {
         return progressBarColor;
     }
 
+    /**
+     * Configure le style de la barre de progression du panier.
+     * @param progressBarStyle Le style de la barre de progression.
+     */
     public void setProgressBarStyle(String progressBarStyle) {
         this.progressBarStyle = progressBarStyle;
     }
 
+    /**
+     * @return Le style de la barre de progression du panier.
+     */
     public String getProgressBarStyle() {
         return progressBarStyle;
     }
-    
+
+    /**
+     * Met à jour la vue en fonction des modifications apportées au panier.
+     * @param p Le panier à mettre à jour.
+     */
     public void Rafraichir(Panier p) {
         getjTextArea().repaint();
         getjTextArea().revalidate();
