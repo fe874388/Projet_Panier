@@ -8,7 +8,7 @@ Ce projet a été réalisé dans le cadre du cours de "M1 Informatique - Génie 
 Le projet inclut les fonctionnalités suivantes :
 
 - Création de différents types de fruits et leurs variations (macédoines, jus, etc.).
-- Création et gestion d'une liste de fruits (Catalogue).
+- Création, modification, suppression et gestion d'une liste de fruits (Catalogue).
 - Ajout de ces fruits dans le panier.
 - Retrait de fruits du panier.
 - Boycotte de tous les fruits d'un même pays.
