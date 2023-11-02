@@ -12,11 +12,12 @@ import java.util.List;
  * @author TD2 Groupe 11
  */
 public class AjoutJusMacedoine extends JDialog {
-    private VueGraphiqueListe parent;
-    private JList<Fruit> fruitList;
-    private JRadioButton macedoineRadioButton;
-    private JRadioButton jusRadioButton;
-    
+    public VueGraphiqueListe parent;
+    public JList<Fruit> fruitList;
+    public JRadioButton macedoineRadioButton;
+    public JRadioButton jusRadioButton;
+    public JButton creerButton;
+    public JButton annulerButton;
     /**
      * Constructeur de la boîte de dialogue d'ajout de Jus/Macédoine.
      * @param p La vue graphique parente.
@@ -75,8 +76,8 @@ public class AjoutJusMacedoine extends JDialog {
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        JButton creerButton = new JButton("Créer");
-        JButton annulerButton = new JButton("Annuler");
+        creerButton = new JButton("Créer");
+        annulerButton = new JButton("Annuler");
 
         creerButton.addActionListener(new ActionListener() {
             @Override

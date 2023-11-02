@@ -142,13 +142,14 @@ public class Panier extends Observable{
     
     /** 
      * Methode ajout(Fruit o) permet d'ajouter un fruit au panier si celui-ci n'est pas plein
-     * @param Fruit Permet d'ajouter le fruit entré en paramètre au panier 
+     * @param o Permet d'ajouter le fruit entré en paramètre au panier 
      */
     public void ajout(Fruit o) throws PanierPleinException{
         if (fruits.size() < contenanceMax) {
-        fruits.add(o);
+            fruits.add(o);
         }
        else {
+            System.out.println("le panier est plein");
             throw new PanierPleinException();
         }
     }

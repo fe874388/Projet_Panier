@@ -11,8 +11,8 @@ import java.awt.event.ActionListener;
  * @author TD2 Groupe 11
  */
 public class SupprimerJusMac extends JDialog {
-    private VueGraphiqueListe parent;
-    private JComboBox<Fruit> jcb;
+    public VueGraphiqueListe parent;
+    public JComboBox<Fruit> jcb;
     
     /**
      * Constructeur de la classe SupprimerJusMac.

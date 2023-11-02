@@ -12,8 +12,8 @@ import java.util.Observer;
  * Elle implémente l'interface `PropertyChangeListener` pour écouter les changements dans le modèle.
  */
 public class VueConsole implements PropertyChangeListener, Observer{
-    private String trace;// Trace à afficher dans la console
-    private Modele model = new Modele();// Modèle associé à cette vue
+    public String trace;// Trace à afficher dans la console
+    public Modele model = new Modele();// Modèle associé à cette vue
 
     /**
      * Récupère la trace actuellement affichée dans la console.

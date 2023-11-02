@@ -33,7 +33,8 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private JProgressBar panierProgressBar;
     private Color progressBarColor;
     private String progressBarStyle;
-
+    public Fruit dernierFruitAjoute = null;
+    
     /**
      * Constructeur de la classe `VueGraphiqueListe`
      * @throws PanierPleinException
@@ -49,12 +50,14 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         Fruit fraise = fruit.creerFruit("fraise",1.99,"France");
         Fruit kiwi = fruit.creerFruit("kiwi",1.5,"Chine");
 
-        Fruit ma = new Jus(orange,banane);
-        Fruit[] fruits={orange,ananas,banane,cerise,fraise,kiwi,ma};
+        Fruit m1 = new Jus(orange,banane);
+        Fruit m3 = new Macedoine(orange,kiwi);
+        ((Macedoine)m3).ajoute(fraise);
+        ((Macedoine)m3).ajoute(ananas);
+        Fruit[] fruits={orange,ananas,banane,cerise,fraise,kiwi,m1,m3};
         DefaultComboBoxModel<Fruit> modelCombo = new DefaultComboBoxModel<>(fruits);
 
         this.jComboBox = new JComboBox<>(modelCombo);
-
 
         // Création du menu bar
         menuBar = new JMenuBar();
@@ -327,6 +330,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     public void ajouterFruit(Fruit f) {
             DefaultComboBoxModel<Fruit> models = (DefaultComboBoxModel<Fruit>) getjComboBox().getModel();
             models.addElement(f);
+            this.dernierFruitAjoute = f;
             repaint();
             revalidate();
     }

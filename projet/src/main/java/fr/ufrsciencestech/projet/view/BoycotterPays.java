@@ -18,9 +18,11 @@ import fr.ufrsciencestech.projet.model.Fruit;
  * @author TD2 Groupe 11
  */
 public class BoycotterPays extends JDialog {
-    private VueGraphiqueListe parent;
-    private JList<String> jcb;// Liste déroulante des origines des fruits
-    private JList<Fruit> fruitList;// Liste des fruits du pays sélectionné
+    public VueGraphiqueListe parent;
+    public JList<String> jcb;// Liste déroulante des origines des fruits
+    public JList<Fruit> fruitList;// Liste des fruits du pays sélectionné
+    public JButton boycotterButton;
+    public JButton annulerButton;
     
     /**
      * Constructeur de la boîte de dialogue pour boycotter un pays.
@@ -62,7 +64,7 @@ public class BoycotterPays extends JDialog {
         this.add(jcb, BorderLayout.WEST);
         this.add(scrollPane, BorderLayout.CENTER);
 
-        JButton boycotterButton = new JButton("Boycotter");
+        boycotterButton = new JButton("Boycotter");
         boycotterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e2) {
@@ -87,7 +89,7 @@ public class BoycotterPays extends JDialog {
                 }
             }
         });
-        JButton annulerButton = new JButton("Annuler");
+        annulerButton = new JButton("Annuler");
         annulerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e1) {

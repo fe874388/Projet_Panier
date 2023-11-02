@@ -17,12 +17,12 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  * @author TD2 Groupe 11
  */
 public class RetirerFruit extends JDialog {
-    private Fruit fruit;
-    private JList<Fruit> listfruit;
-    private Panier panier;
-    private Modele model;
-    List<Fruit>  listeF = new ArrayList<>();
-    private int valide;
+    public Fruit fruit;
+    public JList<Fruit> listfruit;
+    public Panier panier;
+    public Modele model;
+    public List<Fruit>  listeF = new ArrayList<>();
+    public int valide;
     
     /**
      * Constructeur de la classe RetirerFruit.

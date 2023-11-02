@@ -11,9 +11,11 @@ import java.awt.event.ActionListener;
  * @author TD2 Groupe 11
  */
 public class SupprimerFruit extends JDialog {
-    private Fruit fruit;
-    private VueGraphiqueListe parent;
-    private JComboBox<Fruit> jcb;
+    public Fruit fruit;
+    public VueGraphiqueListe parent;
+    public JComboBox<Fruit> jcb;
+    public JButton annulerButton;
+    public JButton supprimerButton;
     
     /**
      * Constructeur de la boîte de dialogue SupprimerFruit pour supprimer un fruit.
@@ -63,8 +65,8 @@ public class SupprimerFruit extends JDialog {
 
         // Crée le bouton "Supprimer" et définir un conseil (tooltip)
         // Crée le bouton "Annuler" et définir un conseil (tooltip)
-        JButton supprimerButton = new JButton("Supprimer");
-        JButton annulerButton = new JButton("Annuler");
+        supprimerButton = new JButton("Supprimer");
+        annulerButton = new JButton("Annuler");
 
         supprimerButton.setToolTipText("");
         annulerButton.setToolTipText("");

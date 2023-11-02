@@ -11,9 +11,9 @@ import java.awt.event.ActionListener;
  * @author TD2 Groupe 11
  */
 public class AjoutFruit extends JDialog {
-    private JTextField nomField, prixField, paysField;
-    private JButton confirmerButton, annulerButton;
-    private VueGraphiqueListe parent;
+    public JTextField nomField, prixField, paysField;
+    public JButton confirmerButton, annulerButton;
+    public VueGraphiqueListe parent;
 
     /**
      * Crée une nouvelle instance de la boîte de dialogue d'ajout de fruit.
@@ -93,7 +93,7 @@ public class AjoutFruit extends JDialog {
     /**
      * Ajoute un fruit à la liste de fruits de la vue parente (vue principale).
      */
-    private void ajouterFruit() {
+    public void ajouterFruit() {
         try {
             String nom = nomField.getText();
             double prix = Double.parseDouble(prixField.getText());
@@ -115,7 +115,7 @@ public class AjoutFruit extends JDialog {
      * @return Une instance de Fruit ou l'une de ses sous-classes.
      * @throws IllegalArgumentException Si le nom du fruit n'est pas reconnu.
      */
-    private Fruit createFruit(String nom, double prix, String pays) {
+    public Fruit createFruit(String nom, double prix, String pays) {
         switch (nom.toLowerCase()) {
             case "orange":
                 return new Orange(prix, pays);

@@ -4,6 +4,7 @@ import javax.swing.*;
 
 /**
  * Cette classe représente une fenêtre d'erreur affichée lorsque le panier est plein.
+ * @author TD2 Groupe 11
  */
 public class PanierPlein extends JFrame {
     

@@ -50,7 +50,7 @@ public class Controleur implements ActionListener {
             model.update(2);
             remplirCylindre(vue);
             vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
-            vue.getAffiche().setText("0");
+            vue.getAffiche().setText("Fruit(s) total dans le panier  :  0");
             vue.getAffichePrix().setText("Prix Total  :  0 €");
         }else if (e.getActionCommand().equals("Retirer")){
             RetirerFruit RetirerFruitDialog = new RetirerFruit(vue,this.p,model);
@@ -78,7 +78,7 @@ public class Controleur implements ActionListener {
                 vue.getjTextArea().setText("Liste des fruit(s) dans mon Panier :\n"+p.toString());
             } catch (PanierPleinException ex) {
                 afficherErreurPanierPlein(vue);
-                Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(((Component)e.getSource()).getName().equals("Moins"))
@@ -132,9 +132,25 @@ public class Controleur implements ActionListener {
     public void setModele(Modele m) {
         this.model = m;
     }
+    
+    /**
+     * Obtient le modele courant.
+     * @return Le courant associé au contrôleur.
+     */
+    public Modele getModele() {
+        return this.model;
+    }
+    
+    /**
+     * Obtient le vue
+     * @return La vue associé au contrôleur.
+     */
+    public VueGraphiqueListe getVue() {
+        return this.vue;
+    }
 
     /**
-     * Définit la vue associée au contrôleur.
+     * Obtient le modele courant.
      * @param vg La vue à définir.
      */
     public void setVue(VueGraphiqueListe vg) {

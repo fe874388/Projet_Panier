@@ -13,9 +13,9 @@ import javax.swing.*;
  * Crée une nouvelle instance de VueGraphiqueSimple.
  */
 public class VueGraphiqueSimple extends JFrame implements VueG{
-    private JButton inc;
-    private JButton dec;
-    private JLabel affiche;
+    public JButton inc;
+    public JButton dec;
+    public JLabel affiche;
     
     /**
      * Constructeur de la classe `VueGraphiqueSimple`
