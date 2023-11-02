@@ -26,7 +26,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private static JScrollPane scrollPane;
     private JMenuBar menuBar;
     private JMenu menuFruit,menuPanier,menuItemType,menuJusMac,menuOrigine;
-    private JMenuItem menuItem,menuItem2,menuItem3,menuItem4,menuItem5;
+    private JMenuItem menuItemModif,menuItem,menuItem2,menuItem3,menuItem4,menuItem5;
     private JMenuItem menuItemRetirerFruit,menuItemRAZp,menuItemRAZc,menuItemtype1,menuItemtype2,menuItemtype3,menuItemtype4;
     private int option=0;
     private double prixTotal = 0.0;
@@ -34,7 +34,6 @@ public class VueGraphiqueListe extends JFrame implements VueG{
     private Color progressBarColor;
     private String progressBarStyle;
     public Fruit dernierFruitAjoute = null;
-    
     /**
      * Constructeur de la classe `VueGraphiqueListe`
      * @throws PanierPleinException
@@ -68,6 +67,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 
 
         menuItem = new JMenuItem("Ajouter Fruit");
+        menuItemModif = new JMenuItem("Modifier un Fruit");
         menuItem2 = new JMenuItem("Supprimer Fruit");
 
         menuItem3 = new JMenuItem("Ajouter Jus/Macedoine");
@@ -100,6 +100,7 @@ public class VueGraphiqueListe extends JFrame implements VueG{
 
 
         menuFruit.add(menuItem);
+        menuFruit.add(menuItemModif);
         menuFruit.add(menuItem2);
 
         menuJusMac.add(menuItem3);
@@ -196,6 +197,14 @@ public class VueGraphiqueListe extends JFrame implements VueG{
                 AjoutJusMacedoine AjoutJusMacedoineDialog = new AjoutJusMacedoine(VueGraphiqueListe.this);
             }
         });
+        
+        menuItemModif.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ModifierFruit ModifierFruitDialog = new ModifierFruit(VueGraphiqueListe.this);
+            }
+        });
+
 
         menuItem4.addActionListener(new ActionListener() {
             @Override
@@ -215,6 +224,19 @@ public class VueGraphiqueListe extends JFrame implements VueG{
         menuItemRAZc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                FabriqueFruit fruit = new FabriqueFruit();
+                Fruit orange = fruit.creerFruit("orange",0.99,"Espagne");
+                Fruit ananas = fruit.creerFruit("ananas",2.0,"USA");
+                Fruit banane = fruit.creerFruit("banane",1.0,"Inde");
+                Fruit cerise = fruit.creerFruit("cerise",2.2,"France");
+                Fruit fraise = fruit.creerFruit("fraise",1.99,"France");
+                Fruit kiwi = fruit.creerFruit("kiwi",1.5,"Chine");
+                Fruit m1 = new Jus(orange,banane);
+                Fruit m3 = new Macedoine(orange,kiwi);
+                ((Macedoine)m3).ajoute(fraise);
+                ((Macedoine)m3).ajoute(ananas);
+                Fruit[] fruits={orange,ananas,banane,cerise,fraise,kiwi,m1,m3};
+                
                 DefaultComboBoxModel<Fruit> modelCombo = new DefaultComboBoxModel<>(fruits);
                 getjComboBox().setModel(modelCombo);
             }

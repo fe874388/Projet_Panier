@@ -29,6 +29,7 @@ public class Panier extends Observable{
      
     /**
      * Constructeur de la classe Panier avec un paramètre qui initialise une ArrayList de Fruit et la contenanceMax avec un paramètre
+     * @param contMax contenanceMax en paramètre
     */
     public Panier(int contMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en paramètre)
        this.fruits = new ArrayList<Fruit>();
@@ -59,7 +60,7 @@ public class Panier extends Observable{
     /** 
      * Methode setFruits(ArrayList(Fruit) fruits)
      * Remplace la liste de fruit qui compose le Panier par une autre liste en paramètre
-     * @param ArrayList(Fruit) fruits
+     * @param fruits est une ArrayList de fruits
      */
     public void setFruits(ArrayList<Fruit> fruits) { 
       this.fruits = fruits;
@@ -169,6 +170,7 @@ public class Panier extends Observable{
     /** 
      * Methode retraitFruit(List(Fruit) fruitsRetirer) permet de retirer tout les fruits de la liste en paramètre du panier
      * S'il y a plusieurs fruits identiques alors on retirera qu'une seul itération de celui-ci
+     * @param fruitsRetirer La liste des fruit à retirer
      */
     public void retraitFruit(List<Fruit> fruitsRetirer) throws PanierVideException {
         if (!fruits.isEmpty()){
@@ -201,6 +203,7 @@ public class Panier extends Observable{
     /** 
      * Methode boycotteOrigine(String origine)
      * Permet de retirer tout les fruits du panier dont l'origine correspond au parametre entrer par l'utilisateur
+     * @param origine Le pays a boycotter
      */ 
     public void boycotteOrigine(String origine) {
         ArrayList<Fruit> fruitsRetenus = new ArrayList<>();
@@ -215,6 +218,7 @@ public class Panier extends Observable{
     /**
      * Methode equals qui compare le Panier courant a un autre objet
      * Ce predicat sert à tester si deux Panier sont equivalents (s'ils contiennent exactement les memes fruits)
+     * @param o L'objet a comparer avec le panier
      * @return boolean Retoune true si les deux Panier sont equivalentes
      */   
     @Override

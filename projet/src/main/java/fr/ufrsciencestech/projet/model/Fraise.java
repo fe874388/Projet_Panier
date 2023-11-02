@@ -20,8 +20,8 @@ public class Fraise implements Fruit{
     
     /**
      * Constructeur de la classe Fraise qui crée une fraise avec les parametres données par l'utilisateur
-     * @param prix
-     * @param origine
+     * @param prix Le prix de la fraise
+     * @param origine L'origine de la fraise
      */
     public Fraise(double prix, String origine) 
     {
@@ -38,7 +38,6 @@ public class Fraise implements Fruit{
     
     /**
      * Methode getPrix qui retourne le prix de la fraise
-     * @return prix
      */
     @Override
     public double getPrix(){
@@ -47,7 +46,6 @@ public class Fraise implements Fruit{
     
     /**
      * Methode setPrix qui definie le prix de la fraise par un prix en parametre 
-     * @param prix Soit le nouveau prix de la fraise
      */
     @Override
     public void setPrix(double prix){
@@ -59,7 +57,6 @@ public class Fraise implements Fruit{
     
     /**
      * Methode getOrigine qui retourne l'origine de la fraise
-     * @return origine
      */
     @Override
     public String getOrigine(){
@@ -68,7 +65,6 @@ public class Fraise implements Fruit{
     
     /**
      * Methode setOrigine qui definie le pays d'origine de la fraise par un prix en parametre 
-     * @param origine Soit le nouveau pays d'origine de la fraise
      */
     @Override
     public void setOrigine(String origine){
@@ -86,7 +82,6 @@ public class Fraise implements Fruit{
     /**
      * Methode equals qui compare la fraise courant a un autre objet
      * Ce predicat pour tester si deux Fraises sont equivalentes
-     * @return boolean Retoune true si les deux fruits sont equivalents
      */
     @Override
     public boolean equals(Object o){
@@ -99,8 +94,6 @@ public class Fraise implements Fruit{
     
     /**
      * Methode/predicat isSeedless indiquant s'il y a des pepins
-     * @return boolean Retoune false si le fruits a des pepin
-     * @return boolean Retoune true si le fruits n'a pas de pepin
      */
     @Override
     public boolean isSeedless() {

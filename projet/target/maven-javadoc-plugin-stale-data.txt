@@ -1,0 +1,59 @@
+@options
+@packages
+-classpath
+'C:/Users/Utilisateur/.m2/repository/org/springframework/spring-context/5.3.10/spring-context-5.3.10.jar;C:/Users/Utilisateur/.m2/repository/org/springframework/spring-aop/5.3.10/spring-aop-5.3.10.jar;C:/Users/Utilisateur/.m2/repository/org/springframework/spring-beans/5.3.10/spring-beans-5.3.10.jar;C:/Users/Utilisateur/.m2/repository/org/springframework/spring-core/5.3.10/spring-core-5.3.10.jar;C:/Users/Utilisateur/.m2/repository/org/springframework/spring-jcl/5.3.10/spring-jcl-5.3.10.jar;C:/Users/Utilisateur/.m2/repository/org/springframework/spring-expression/5.3.10/spring-expression-5.3.10.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'10'
+-sourcepath
+'C:/Users/Utilisateur/Desktop/Final/Projet_Panier-main/projet/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Utilisateur/Desktop/Final/Projet_Panier-main/projet/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'projet 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/10/docs/api' 'C:/Users/Utilisateur/Desktop/Final/Projet_Panier-main/projet/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'projet 1.0-SNAPSHOT API'
+fr.ufrsciencestech.projet.controler
+fr.ufrsciencestech.projet.model
+fr.ufrsciencestech.projet
+fr.ufrsciencestech.projet.view
+C:\Users\Utilisateur\.m2\repository\org\springframework\spring-context\5.3.10\spring-context-5.3.10.jar = 1697132227376
+C:\Users\Utilisateur\.m2\repository\org\springframework\spring-aop\5.3.10\spring-aop-5.3.10.jar = 1697132226862
+C:\Users\Utilisateur\.m2\repository\org\springframework\spring-beans\5.3.10\spring-beans-5.3.10.jar = 1697132227874
+C:\Users\Utilisateur\.m2\repository\org\springframework\spring-core\5.3.10\spring-core-5.3.10.jar = 1697132227376
+C:\Users\Utilisateur\.m2\repository\org\springframework\spring-jcl\5.3.10\spring-jcl-5.3.10.jar = 1697132227369
+C:\Users\Utilisateur\.m2\repository\org\springframework\spring-expression\5.3.10\spring-expression-5.3.10.jar = 1697132227880
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\src\main\java = 1698713936000
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\allclasses-index.html = 1698968606675
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\allpackages-index.html = 1698968606678
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\constant-values.html = 1698968606481
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\deprecated-list.html = 1698968606617
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\element-list = 1698968606447
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\help-doc.html = 1698968606684
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\index-all.html = 1698968606669
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\index.html = 1698968606620
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\jquery-ui.overrides.css = 1698968606704
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\member-search-index.js = 1698968606667
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\module-search-index.js = 1698968606663
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\overview-summary.html = 1698968606681
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\overview-tree.html = 1698968606612
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\package-search-index.js = 1698968606664
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\script.js = 1698968606688
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\search.js = 1698968606689
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\serialized-form.html = 1698968606498
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\stylesheet.css = 1698968606686
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\tag-search-index.js = 1698968606667
+C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\site\apidocs\type-search-index.js = 1698968606665

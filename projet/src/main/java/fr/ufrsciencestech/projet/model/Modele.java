@@ -33,6 +33,7 @@ public class Modele extends Observable{
      * Methode update
      * Elle permet la communication entre les objets observés et les observateurs
      * Met a jour le compteur et reveille les observateurs avec la valeur du compteur 
+     * @param incr Valeur -1 ou +1 en fonction de l'interaction de l'utilisateur
      */
     public void update(int incr) {
         if(incr==2){
@@ -60,6 +61,7 @@ public class Modele extends Observable{
     /**
      * Methode addPropertyChangeListener(PropertyChangeListener listener)
      * Methode servant à ajouter un listener
+     * @param listener Ecouteur a ajouté
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
@@ -68,6 +70,7 @@ public class Modele extends Observable{
     /**
      * Methode removePropertyChangeListener(PropertyChangeListener listener)
      * Methode servant à retirer un listener
+     * @param listener Ecouteur a retirer
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
@@ -77,6 +80,7 @@ public class Modele extends Observable{
      * Methode setCompteur(int newCounter)
      * Methode servant à remplacer la valeur de l'attribut compteur par une autre en parametre 
      * Elle met a jour la nouvelle valeur du compteur et reveille les observateurs avec cette valeur 
+     * @param newCounter Nouveau compteur
      */
     public void setCompteur(int newCounter) {
         int old = this.compteur;

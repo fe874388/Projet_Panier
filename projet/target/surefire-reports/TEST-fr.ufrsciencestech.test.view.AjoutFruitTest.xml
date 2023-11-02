@@ -15,7 +15,7 @@
     <property name="user.country" value="FR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-15.0.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\UTILIS~1\AppData\Local\Temp\surefire4181162548580410432\surefirebooter12052160173904461017.jar C:\Users\Utilisateur\AppData\Local\Temp\surefire4181162548580410432 2023-11-02T19-31-42_249-jvmRun1 surefire1867894865543445352tmp surefire_012169731393074237900tmp"/>
+    <property name="sun.java.command" value="C:\Users\UTILIS~1\AppData\Local\Temp\surefire13310520440231730015\surefirebooter11366350066795876001.jar C:\Users\Utilisateur\AppData\Local\Temp\surefire13310520440231730015 2023-11-02T22-58-22_109-jvmRun1 surefire12526266340779962962tmp surefire_018012266884581884862tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\test-classes;C:\Users\Utilisateur\Desktop\Final\Projet_Panier-main\projet\target\classes;C:\Users\Utilisateur\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Utilisateur\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Utilisateur\.m2\repository\org\springframework\spring-context\5.3.10\spring-context-5.3.10.jar;C:\Users\Utilisateur\.m2\repository\org\springframework\spring-aop\5.3.10\spring-aop-5.3.10.jar;C:\Users\Utilisateur\.m2\repository\org\springframework\spring-beans\5.3.10\spring-beans-5.3.10.jar;C:\Users\Utilisateur\.m2\repository\org\springframework\spring-core\5.3.10\spring-core-5.3.10.jar;C:\Users\Utilisateur\.m2\repository\org\springframework\spring-jcl\5.3.10\spring-jcl-5.3.10.jar;C:\Users\Utilisateur\.m2\repository\org\springframework\spring-expression\5.3.10\spring-expression-5.3.10.jar;C:\Users\Utilisateur\.m2\repository\org\mockito\mockito-all\1.9.5\mockito-all-1.9.5.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\UTILIS~1\AppData\Local\Temp\surefire4181162548580410432\surefirebooter12052160173904461017.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\UTILIS~1\AppData\Local\Temp\surefire13310520440231730015\surefirebooter11366350066795876001.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="15.0.1+9-18"/>

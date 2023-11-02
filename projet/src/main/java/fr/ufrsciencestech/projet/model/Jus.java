@@ -58,8 +58,7 @@ public class Jus implements Fruit{
     
      /** 
      * Methode getPrix()
-     * Permet de calculer le prix du Jus grace a tout les fruits qui le compose (ArrayList) et de le renvoyé
-     * @return Le prix du jus  
+     * Permet de calculer le prix du Jus grace a tout les fruits qui le compose (ArrayList) et de le renvoyé 
      */
     @Override
     public double getPrix(){
@@ -73,7 +72,6 @@ public class Jus implements Fruit{
     /** 
      * Methode setPrix(double prix)
      * Permet de remplacer l'ancien prix du Jus par un nouveau prix en parametre
-     * @param prix Le nouveau prix du jus 
      */
     @Override
     public void setPrix(double prix){
@@ -91,7 +89,7 @@ public class Jus implements Fruit{
     /** 
      * Methode setFruits(ArrayList(Fruit) f)
      * Remplace la liste de fruit qui compose le Jus par une autre liste en parametre
-     * @param ArrayList de Fruit f
+     * @param f est une ArrayList de Fruit 
      */
     public void setFruits(ArrayList<Fruit> f){
 	this.fruits=f;
@@ -99,8 +97,7 @@ public class Jus implements Fruit{
     
     /** 
      * Methode getOrigine()
-     * @return Etant donnée que les fruit on des provenance differente, cette methode renvoie une chaine vide
-     * @deprecated 
+     * @deprecated Etant donnée que les fruit on des provenance differente, cette methode renvoie une chaine vide
      */
     @Override
     public String getOrigine(){
@@ -109,8 +106,7 @@ public class Jus implements Fruit{
     
     /** 
      * setOrigine(String origine)
-     * @param origine Etant donnée que les fruit on des provenance differente, cette methode est inutile. L'origine est une chaine vide
-     * @deprecated L'origine est une chaine vide
+     * @deprecated Etant donnée que les fruit on des provenance differente, cette methode est inutile. L'origine est une chaine vide
      */
     @Override
     public void setOrigine(String origine){
@@ -134,7 +130,6 @@ public class Jus implements Fruit{
     /**
      * Methode equals qui compare le Jus courant a un autre objet
      * Ce predicat pour tester si deux Jus sont equivalents
-     * @return boolean Retoune true si les deux jus sont equivalents
      */
     @Override
     public boolean equals(Object o){  //predicat pour tester si 2 Jus sont equivalentes
@@ -148,8 +143,6 @@ public class Jus implements Fruit{
     /**
      * Methode/predicat isSeedless indiquant s'il y a des pepins
      * Un jus est liquide donc ne contient pas de pepin
-     * @return boolean Retoune false si le fruits a des pepin
-     * @return boolean Retoune true si le fruits n'a pas de pepin
      */
     @Override
     public boolean isSeedless() {  //predicat indiquant qu'un fruit a des pepins

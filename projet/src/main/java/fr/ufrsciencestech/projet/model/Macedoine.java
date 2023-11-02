@@ -60,7 +60,6 @@ public class Macedoine implements Fruit{
     /** 
      * Methode getPrix()
      * Permet de calculer le prix de la Macédoine grace a tout les fruits qui le compose (ArrayList) et de le renvoyé
-     * @return Le prix de la Macédoine  
      */ 
     @Override
     public double getPrix(){
@@ -74,7 +73,6 @@ public class Macedoine implements Fruit{
     /** 
      * Methode setPrix(double prix)
      * Permet de remplacer l'ancien prix de la Macédoine par le nouveau prix en parametre
-     * @param prix Le nouveau prix de la Macédoine
      */
     @Override
     public void setPrix(double prix){
@@ -92,7 +90,7 @@ public class Macedoine implements Fruit{
      /** 
      * Methode setFruits(ArrayList(Fruit) f)
      * Remplace la liste de fruit qui compose la Macédoine par une autre liste en parametre
-     * @param ArrayList(Fruit) f
+     * @param f est une ArrayList de Fruit
      */
     public void setFruits(ArrayList<Fruit> f){
 	this.fruits=f;
@@ -100,8 +98,7 @@ public class Macedoine implements Fruit{
     
     /** 
      * Methode getOrigine()
-     * @return Etant donnée que les fruit on des provenance differente, cette methode renvoie une chaine vide
-     * @deprecated Car l'origine est une chaine vide dans tout les cas
+     * @deprecated Etant donnée que les fruit on des provenance differente, cette methode renvoie une chaine vide
      */
     @Override
     public String getOrigine(){
@@ -110,8 +107,7 @@ public class Macedoine implements Fruit{
     
      /** 
      * setOrigine(String origine)
-     * @param origine Etant donnée que les fruit on des provenance differente, cette methode est inutile. L'origine est une chaine vide
-     * @deprecated 
+     * @deprecated Etant donnée que les fruit on des provenance differente, cette methode est inutile. L'origine est une chaine vide
      */
     @Override
     public void setOrigine(String origine){
@@ -134,7 +130,6 @@ public class Macedoine implements Fruit{
     /**
      * Methode equals qui compare la Macédoine courant a un autre objet
      * Ce predicat pour tester si deux Macédoines sont equivalents
-     * @return boolean Retoune true si les deux Macédoines sont equivalentes
      */
     @Override
     public boolean equals(Object o){  //predicat pour tester si 2 Macédoines sont equivalentes
@@ -148,8 +143,6 @@ public class Macedoine implements Fruit{
     /**
      * Methode/predicat isSeedless indiquant s'il y a des pepins
      * Une macedoine est une preparation de fruit à deguster, on considerera donc tout les pepins et noyaux retirés
-     * @return boolean Retoune false si le fruits a des pepin
-     * @return boolean Retoune true si le fruits n'a pas de pepin
      */
     @Override
     public boolean isSeedless() {  //predicat indiquant qu'un fruit a des pepins

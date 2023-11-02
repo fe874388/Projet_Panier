@@ -35,7 +35,6 @@ public class Banane implements Fruit {
     
     /**
      * Methode getPrix qui retourne le prix de la banane
-     * @return Le prix de la banane
      */
     @Override
     public double getPrix() {
@@ -44,7 +43,6 @@ public class Banane implements Fruit {
     
     /**
      * Methode setPrix qui definie le prix de la banane par un prix en parametre 
-     * @param prix Soit le nouveau prix de la banane
      */
     @Override
     public void setPrix(double prix) {
@@ -53,7 +51,6 @@ public class Banane implements Fruit {
     
     /**
      * Methode getOrigine qui retourne l'origine de la banane
-     * @return L'origine de la banane 
      */
     @Override
     public String getOrigine() {
@@ -62,7 +59,6 @@ public class Banane implements Fruit {
     
     /**
      * Methode setOrigine qui definie le pays d'origine de la banane par un prix en parametre 
-     * @param origine Soit le nouveau pays d'origine de la banane
      */
     @Override
     public void setOrigine(String origine) {
@@ -80,7 +76,6 @@ public class Banane implements Fruit {
     /**
      * Methode equals qui compare la banane courant a un autre objet
      * Ce predicat pour tester si deux Bananes sont equivalentes
-     * @return boolean Retoune true si les deux fruits sont equivalents
      */
     @Override
     public boolean equals(Object o) { // predicat pour tester si 2 Bananes sont equivalentes
@@ -93,8 +88,6 @@ public class Banane implements Fruit {
     
     /**
      * Methode/predicat isSeedless indiquant s'il y a des pepins
-     * @return boolean Retoune false si le fruits a des pepin
-     * @return boolean Retoune true si le fruits n'a pas de pepin
      */
     @Override
     public boolean isSeedless() { // predicat indiquant qu'un fruit a des pepins

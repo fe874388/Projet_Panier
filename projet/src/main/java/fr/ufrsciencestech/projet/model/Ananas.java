@@ -38,7 +38,6 @@ public class Ananas implements Fruit{
     
     /**
      * Methode getPrix qui retourne le prix de l'ananas
-     * @return Le prix de l'ananas
      */
     @Override
     public double getPrix(){
@@ -47,7 +46,6 @@ public class Ananas implements Fruit{
 
     /**
      * Methode setPrix qui definie le prix de l'ananas par un prix en parametre 
-     * @param prix Soit le nouveau prix de l'ananas
      */
     @Override
     public void setPrix(double prix){
@@ -56,7 +54,6 @@ public class Ananas implements Fruit{
     
     /**
      * Methode getOrigine qui retourne l'origine de l'ananas
-     * @return L'origine de l'ananas
      */
     @Override
     public String getOrigine(){
@@ -65,7 +62,6 @@ public class Ananas implements Fruit{
 
     /**
      * Methode setOrigine qui definie le pays d'origine de l'ananas par un prix en parametre 
-     * @param origine Soit le nouveau pays d'origine de l'ananas
      */
     @Override
     public void setOrigine(String origine){
@@ -84,7 +80,6 @@ public class Ananas implements Fruit{
     /**
      * Methode equals qui compare l'ananas courant a un autre objet
      * Ce predicat pour tester si deux Ananas sont equivalentes
-     * @return boolean Retoune true si les deux fruits sont equivalents
      */
     @Override
     public boolean equals(Object o){
@@ -97,8 +92,6 @@ public class Ananas implements Fruit{
     
     /**
      * Methode/predicat isSeedless indiquant s'il y a des pepins
-     * @return boolean Retoune false si le fruits a des pepin
-     * @return boolean Retoune true si le fruits n'a pas de pepin
      */
     @Override
     public boolean isSeedless() {
