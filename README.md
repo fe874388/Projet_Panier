@@ -27,9 +27,9 @@ Le projet a été réalisé par une équipe d'étudiants, et les groupes ont ét
 
 ## Contenu du Répertoire
 
-- src/main/java/fr/ufrsciencestech/projet : Contient les fichiers sources de l'application Java.
+- projet/src/main/java/fr/ufrsciencestech/projet : Contient les fichiers sources de l'application Java.
+- projet/src/test/java/fr/ufrsciencestech/test : Contient les tests unitaires et d'intégration.
 - projet/target/site/apidocs/index.html : Contient la JavaDoc (documentation Java du projet)
-- [Dossier 2] : Contient les tests unitaires et d'intégration.
 - [Dossier 3] : Contient le rapport de couverture de code.
 
 ## Comment Utiliser le Projet
