@@ -115,7 +115,7 @@ public class ModificationduFruit extends JDialog {
     /**
      * Annule la modification du fruit et ferme la boîte de dialogue.
      */
-    private void annulerAjout() {
+    public void annulerAjout() {
         dispose();
     }
 }

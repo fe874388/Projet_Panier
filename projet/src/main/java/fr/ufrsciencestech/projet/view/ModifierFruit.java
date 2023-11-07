@@ -89,7 +89,7 @@ public class ModifierFruit extends JDialog {
     /**
      * Fonction qui modifier le fruit selectionné par l'utilisateur sur l'IHM
      */
-    private void Modificationdufruit() {
+    public void Modificationdufruit() {
         Fruit selectedFruit = fruitList.getSelectedValue();
         ModificationduFruit modJDialog = new ModificationduFruit(this, selectedFruit);
         selectedFruit.setOrigine(modJDialog.fruit.getOrigine());
@@ -100,7 +100,7 @@ public class ModifierFruit extends JDialog {
     /**
      * Fonction qui permet d'annuler la saisie et de fermer la fenetre de dialogue
      */
-    private void annulerModif() {
+    public void annulerModif() {
         dispose();
     }
 }
